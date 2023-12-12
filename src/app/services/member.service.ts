@@ -8,7 +8,7 @@ import { Member } from '../models/member.model';
 })
 export class MemberService {
 
-  private baseUrl = 'http://localhost:8080/members';
+  private baseUrl = 'http://localhost:8080/aftas/members';
 
   constructor(private http: HttpClient) { }
 
