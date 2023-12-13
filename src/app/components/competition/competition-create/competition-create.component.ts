@@ -14,9 +14,9 @@ export class CompetitionCreateComponent {
     date: new Date(),
     startTime: { hours: 12, minutes: 0 }, 
     endTime: { hours: 14, minutes: 30 }, 
-    numberOfParticipants: 50,
-    location: 'Sample Location',
-    amount: 100.5
+    numberOfParticipants: 0,
+    location: '',
+    amount: 0
   };
 
   constructor(private competitionService: CompetitionService, private router: Router) { }

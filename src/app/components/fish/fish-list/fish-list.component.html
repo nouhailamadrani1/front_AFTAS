@@ -1,1 +1,36 @@
-<p>fish-list works!</p>
+<!-- fish-list.component.html -->
+
+<div class=" mt-5">
+    <div class="d-flex justify-content-between"> 
+      <h5>Fishes</h5>
+      <a routerLink="/fish/create" class="btn shadow mb-3 rounded" style="background-color: #0c151e; color: #f9eeb9;"> <b>+</b> Add fish</a>
+    </div>
+  
+    <div class="bg-white rounded-4 shadow p-3 mb-5 my-3">
+      <table class="table align-middle mb-0 bg-white btn-rounded p-2">
+        <thead class="bg-light">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Average Weight</th>
+            <th>Level</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fish of fishes">
+            <td>{{ fish.id }}</td>
+            <td>{{ fish.name }}</td>
+            <td>{{ fish.averageWeight }}</td>
+            <td>{{ fish.level.description }}</td>
+            <td>
+              <button class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25" (click)="viewFish(fish.id)">View</button>
+              <button class="btn btn-outline-warning btn-rounded btn-sm mx-1 shadow bg-warning bg-opacity-25" (click)="editFish(fish.id)">Edit</button>
+              <button class="btn btn-outline-danger btn-rounded btn-sm mx-1 shadow bg-danger bg-opacity-25" (click)="deleteFish(fish.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
