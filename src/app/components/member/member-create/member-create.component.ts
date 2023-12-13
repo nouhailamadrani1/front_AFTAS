@@ -18,7 +18,7 @@ export class MemberCreateComponent {
     familyName: '',
     accessionDate: new Date(),
     nationality: '',
-    identityDocument: IdentityDocumentType.CIN, // Default value
+    identityDocument: IdentityDocumentType.CIN, 
     identityNumber: ''
   };
 
@@ -30,7 +30,7 @@ export class MemberCreateComponent {
     this.memberService.saveMember(this.newMember).subscribe(
       (createdMember) => {
         console.log('Member created successfully:', createdMember);
-        // Redirect to the member list or view
+       
         this.router.navigate(['/members']);
       },
       (error) => {

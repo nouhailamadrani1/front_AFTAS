@@ -1,1 +1,38 @@
-<p>hunting-create works!</p>
+<!-- hunting-create.component.html -->
+
+<div class="container">
+    <div class="d-flex justify-content-center">
+      <form (submit)="createHunting()" class="bg-white w-75 rounded-4 shadow p-3 ">
+        <h5 class="px-3 mb-3 text-center">Form Create Hunting</h5>
+        <div class="mb-3 px-3">
+          <label for="numberOfFish" class="form-label">Number of Fish</label>
+          <input type="number" class="form-control border-bottom border-0 border-secondary border-3" id="numberOfFish" [(ngModel)]="newHunting.numberOfFish" name="numberOfFish" required>
+        </div>
+    
+        <div class="mb-3 px-3">
+          <label for="competition" class="form-label">Competition</label>
+          <select class="form-select border-bottom border-0 border-secondary border-3" id="competition" [(ngModel)]="newHunting.competition" name="competition" required>
+            <option *ngFor="let competition of competitions" [ngValue]="competition">{{ competition.location }} - {{ competition.date | date }}</option>
+          </select>
+        </div>
+     
+        <div class="mb-3 px-3">
+          <label for="member" class="form-label">Member</label>
+          <select class="form-select border-bottom border-0 border-secondary border-3" id="member" [(ngModel)]="newHunting.member" name="member" required>
+            <option *ngFor="let member of members" [ngValue]="member">{{ member.name }} {{ member.familyName }}</option>
+          </select>
+        </div>
+      
+        <div class="mb-3 px-3">
+          <label for="fish" class="form-label">Fish</label>
+          <select class="form-select border-bottom border-0 border-secondary border-3" id="fish" [(ngModel)]="newHunting.fish" name="fish" required>
+            <option *ngFor="let fish of fishes" [ngValue]="fish">{{ fish.name }} - {{ fish.averageWeight }} kg</option>
+          </select>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn shadow mb-5 rounded" style="background-color: #0c151e; color: #f9eeb9;">Create Hunting</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
