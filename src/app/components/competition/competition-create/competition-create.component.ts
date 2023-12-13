@@ -13,8 +13,8 @@ export class CompetitionCreateComponent {
     code:0,
     date: new Date(),
     startTime: { hours: 12, minutes: 0 }, 
-    endTime: { hours: 14, minutes: 30 }, // Provide valid Time object
-    numberOfParticipants: 50, // Provide a valid number
+    endTime: { hours: 14, minutes: 30 }, 
+    numberOfParticipants: 50,
     location: 'Sample Location',
     amount: 100.5
   };
@@ -25,7 +25,7 @@ export class CompetitionCreateComponent {
     this.competitionService.saveCompetition(this.newCompetition).subscribe(
       (createdCompetition) => {
         console.log('Competition created successfully:', createdCompetition);
-        // Redirect to the competition list or view
+        
         this.router.navigate(['/competitions']);
       },
       (error) => {

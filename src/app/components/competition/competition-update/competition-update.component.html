@@ -1,1 +1,41 @@
-<p>competition-update works!</p>
+<div class="container mt-3">
+ 
+    <div class="d-flex justify-content-center">
+    <form (ngSubmit)="updateCompetition()" class="w-50">
+      <div class="mb-3">
+        <label for="date" class="form-label">Date</label>
+        <input type="date" class="form-control  border-bottom border-0 border-primary border-3" id="date" [(ngModel)]="competition.date" name="date" required>
+      </div>
+  
+      <div class="mb-3">
+        <label for="startTime" class="form-label">Start Time</label>
+        <input type="time" class="form-control  border-bottom border-0 border-primary border-3" id="startTime" [(ngModel)]="competition.startTime" name="startTime" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="endTime" class="form-label">End Time</label>
+        <input type="time" class="form-control  border-bottom border-0 border-primary border-3" id="endTime" [(ngModel)]="competition.endTime" name="endTime" required>
+      </div>
+      
+      
+  
+      <div class="mb-3">
+        <label for="numberOfParticipants" class="form-label">Number of Participants</label>
+        <input type="number" class="form-control  border-bottom border-0 border-primary border-3" id="numberOfParticipants" [(ngModel)]="competition.numberOfParticipants" name="numberOfParticipants" required>
+      </div>
+  
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input type="text" class="form-control  border-bottom border-0 border-primary border-3" id="location" [(ngModel)]="competition.location" name="location" required>
+      </div>
+  
+      <div class="mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="number" class="form-control  border-bottom border-0 border-primary border-3" id="amount" [(ngModel)]="competition.amount" name="amount" required>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Update Competition</button>
+    </form>
+    </div>
+  </div>
+  

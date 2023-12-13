@@ -33,23 +33,23 @@ const routes: Routes = [
   
   { path: 'levels', component: LevelListComponent },
   { path: 'levels/create', component: LevelCreateComponent },
-  { path: 'levels/update/:id', component: LevelUpdateComponent },
-  { path: 'levels/view/:id', component: LevelViewComponent },
+  { path: 'levels/update/:code', component: LevelUpdateComponent },
+  { path: 'levels/view/:code', component: LevelViewComponent },
   
   { path: 'competitions', component: CompetitionListComponent },
   { path: 'competitions/create', component: CompetitionCreateComponent },
-  { path: 'competitions/update/:id', component: CompetitionUpdateComponent },
-  { path: 'competitions/view/:id', component: CompetitionViewComponent },
+  { path: 'competitions/update/:code', component: CompetitionUpdateComponent },
+  { path: 'competitions/view/:code', component: CompetitionViewComponent },
   
   { path: 'members', component: MemberListComponent },
   { path: 'members/create', component: MemberCreateComponent },
-  { path: 'members/update/:id', component: MemberUpdateComponent },
-  { path: 'members/view/:id', component: MemberViewComponent },
+  { path: 'members/update/:code', component: MemberUpdateComponent },
+  { path: 'members/view/:code', component: MemberViewComponent },
   
   { path: 'fish', component: FishListComponent },
   { path: 'fish/create', component: FishCreateComponent },
-  { path: 'fish/update/:id', component: FishUpdateComponent },
-  { path: 'fish/view/:id', component: FishViewComponent },
+  { path: 'fish/update/:code', component: FishUpdateComponent },
+  { path: 'fish/view/:code', component: FishViewComponent },
   
   { path: 'hunting', component: HuntingListComponent },
   { path: 'hunting/create', component: HuntingCreateComponent },

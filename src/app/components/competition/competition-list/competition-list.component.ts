@@ -30,10 +30,21 @@ export class CompetitionListComponent implements OnInit {
   }
 
   editCompetition(code: number): void {
+    this.router.navigate(['/competitions/update/', code]);
     console.log(`Edit competition with code ${code}`);
   }
 
   deleteCompetition(code: number): void {
-    console.log(`Delete competition with code ${code}`);
+    this.competitionService.deleteCompetition(code).subscribe(
+      () => {
+        console.log(`Competition with code ${code} deleted successfully.`);
+       
+        this.loadCompetitions();
+      },
+      (error) => {
+        console.error(`Error deleting competition with code ${code}:`, error);
+      }
+    );
   }
+  
 }
