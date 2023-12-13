@@ -27,10 +27,17 @@ import { HuntingViewComponent } from './components/hunting/hunting-view/hunting-
 import { HuntingUpdateComponent } from './components/hunting/hunting-update/hunting-update.component';
 import { HuntingCreateComponent } from './components/hunting/hunting-create/hunting-create.component';
 import { HuntingListComponent } from './components/hunting/hunting-list/hunting-list.component';
+import { HeadComponent } from './components/head/head.component';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { ScriptComponent } from './components/script/script.component';
+
 
 
 @NgModule({
   declarations: [
+    SideBarComponent,
+    HeadComponent,
+    ScriptComponent,
     AppComponent,
     RankingListComponent,
     RankingCreateComponent,
