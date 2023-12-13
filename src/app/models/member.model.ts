@@ -1,7 +1,7 @@
 import { IdentityDocumentType } from "./IdentityDocumentType";
 
 export interface Member {
-    num?: number;
+    num: number;
     name: string;
     familyName: string;
     accessionDate: Date;

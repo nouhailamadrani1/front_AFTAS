@@ -1,10 +1,12 @@
 // competition.model.ts
 
+import { Time } from "@angular/common";
+
 export interface Competition {
-    code?: number;
+    code: number;
     date: Date;
-    startTime: string; 
-    endTime: string;   
+    startTime: Time; 
+    endTime: Time;   
     numberOfParticipants: number;
     location: string;
     amount: number;

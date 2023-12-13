@@ -1,1 +1,38 @@
-<p>competition-list works!</p>
+<!-- competition-list.component.html -->
+
+<div class="container mt-5">
+  <a routerLink="/competitions/create" class="btn btn-sm btn-info" >Add competition</a>
+    <h2>Competition List</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Date</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Participants</th>
+          <th>Location</th>
+          <th>Amount</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let competition of competitions">
+          <td>{{ competition.code }}</td>
+          <td>{{ competition.date  }}</td>
+          <td>{{ competition.startTime}}</td>
+          <td>{{ competition.endTime  }}</td>
+          <td>{{ competition.numberOfParticipants }}</td>
+          <td>{{ competition.location }}</td>
+          <td>{{ competition.amount  }}</td>
+          <td>
+            <button class="btn btn-sm btn-info" (click)="viewCompetition(competition.code)">View</button>
+            <button class="btn btn-sm btn-warning" (click)="editCompetition(competition.code)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteCompetition(competition.code)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RankingListComponent } from './components/ranking/ranking-list/ranking-list.component';
@@ -30,6 +30,7 @@ import { HuntingListComponent } from './components/hunting/hunting-list/hunting-
 import { HeadComponent } from './components/head/head.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { ScriptComponent } from './components/script/script.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -66,7 +67,9 @@ import { ScriptComponent } from './components/script/script.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
