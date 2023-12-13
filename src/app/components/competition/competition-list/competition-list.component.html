@@ -1,10 +1,16 @@
 <!-- competition-list.component.html -->
+ 
+<div class=" mt-5  " >
+  <div class="d-flex justify-content-between"> 
+  
+    <h5>Competitions</h5>
+    <a routerLink="/competitions/create" class="btn shadow mb-3 rounded"style="background-color: #0c151e; color:#f9eeb9" > <b>+</b>  Add competition</a>
+    </div>
 
-<div class="container mt-5">
-  <a routerLink="/competitions/create" class="btn btn-sm btn-info" >Add competition</a>
-    <h2>Competition List</h2>
-    <table class="table">
-      <thead>
+   
+    <div class="  bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3" >
+    <table class="table align-middle mb-0 bg-white  btn-rounded  p-2">
+      <thead class="bg-light ">
         <tr>
           <th>Code</th>
           <th>Date</th>
@@ -19,20 +25,23 @@
       <tbody>
         <tr *ngFor="let competition of competitions">
           <td>{{ competition.code }}</td>
-          <td>{{ competition.date  | date }}</td>
+        
+          <td > {{ competition.date  | date }} </td>
+          
           <td>{{ competition.startTime}}</td>
           <td>{{ competition.endTime  }}</td>
           <td>{{ competition.numberOfParticipants }}</td>
-          <td>{{ competition.location }}</td>
-          <td>{{ competition.amount  }}</td>
+          <td >{{ competition.location }}</td>
+          <td>{{ competition.amount  }} </td>
           <td>
-            <button class="btn btn-sm btn-info mx-1" (click)="viewCompetition(competition.code)">View</button>
-            <button class="btn btn-sm btn-warning  mx-1" (click)="editCompetition(competition.code)">Edit</button>
-            <button class="btn btn-sm btn-danger  mx-1" (click)="deleteCompetition(competition.code)">Delete</button>
+            <button class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow  bg-info bg-opacity-25" (click)="viewCompetition(competition.code)">View</button>
+            <button class="btn btn-outline-warning btn-rounded btn-sm mx-1 shadow bg-warning bg-opacity-25" (click)="editCompetition(competition.code)">Edit</button>
+            <button class="btn btn-outline-danger btn-rounded btn-sm mx-1 shadow  bg-danger bg-opacity-25" (click)="deleteCompetition(competition.code)">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
   </div>
 
   
