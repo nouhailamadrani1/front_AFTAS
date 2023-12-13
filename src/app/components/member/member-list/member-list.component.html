@@ -1,1 +1,44 @@
-<p>member-list works!</p>
+<!-- member-list.component.html -->
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between">
+      <h5>Members</h5>
+      <a routerLink="/members/create" class="btn shadow mb-3 rounded" style="background-color: #0c151e; color: #f9eeb9;">
+        <b>+</b> Add Member
+      </a>
+    </div>
+  
+    <div class="bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3">
+      <table class="table align-middle mb-0 bg-white btn-rounded p-2">
+        <thead class="bg-light">
+          <tr>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Family Name</th>
+            <th>Accession Date</th>
+            <th>Nationality</th>
+            <th>ID Type</th>
+            <th>Identity Number</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let member of members">
+            <td>{{ member.num }}</td>
+            <td>{{ member.name }}</td>
+            <td>{{ member.familyName }}</td>
+            <td>{{ member.accessionDate | date }}</td>
+            <td>{{ member.nationality }}</td>
+            <td>{{ member.identityDocument }}</td>
+            <td>{{ member.identityNumber }}</td>
+            <td>
+              <button class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25" (click)="viewMember(member.num)">View</button>
+              <button class="btn btn-outline-warning btn-rounded btn-sm mx-1 shadow bg-warning bg-opacity-25" (click)="editMember(member.num)">Edit</button>
+              <button class="btn btn-outline-danger btn-rounded btn-sm mx-1 shadow bg-danger bg-opacity-25" (click)="deleteMember(member.num)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

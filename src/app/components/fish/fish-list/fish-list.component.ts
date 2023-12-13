@@ -35,8 +35,19 @@ export class FishListComponent implements OnInit {
     // Add navigation logic if needed
   }
 
+
+
   deleteFish(id: number): void {
-    console.log(`Delete fish with id ${id}`);
-    // Add delete logic if needed
+    this.fishService.deleteFish(id).subscribe(
+      () => {
+        console.log(`level with code ${id} deleted successfully.`);
+       
+        this.loadFishes();
+      },
+      (error) => {
+        console.error(`Error deleting level with code ${id}:`, error);
+      }
+    );
   }
+
 }

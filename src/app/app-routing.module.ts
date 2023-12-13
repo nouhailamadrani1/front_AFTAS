@@ -43,22 +43,20 @@ const routes: Routes = [
   
   { path: 'members', component: MemberListComponent },
   { path: 'members/create', component: MemberCreateComponent },
-  { path: 'members/update/:code', component: MemberUpdateComponent },
-  { path: 'members/view/:code', component: MemberViewComponent },
+  { path: 'members/update/:num', component: MemberUpdateComponent },
+  { path: 'members/view/:num', component: MemberViewComponent },
   
   { path: 'fish', component: FishListComponent },
   { path: 'fish/create', component: FishCreateComponent },
-  { path: 'fish/update/:code', component: FishUpdateComponent },
-  { path: 'fish/view/:code', component: FishViewComponent },
+  { path: 'fish/update/:id', component: FishUpdateComponent },
+  { path: 'fish/view/:id', component: FishViewComponent },
   
   { path: 'hunting', component: HuntingListComponent },
   { path: 'hunting/create', component: HuntingCreateComponent },
   { path: 'hunting/update/:id', component: HuntingUpdateComponent },
   { path: 'hunting/view/:id', component: HuntingViewComponent },
   
-  // // Add a default route or redirect to handle invalid routes
-  // { path: '', redirectTo: '/rankings', pathMatch: 'full' },
-  // { path: '**', redirectTo: '/rankings', pathMatch: 'full' },
+
 ];
 
 @NgModule({

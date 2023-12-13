@@ -14,7 +14,7 @@
             <th>Name</th>
             <th>Average Weight</th>
             <th>Level</th>
-            <th>Actions</th>
+            <th class="text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@
             <td>{{ fish.name }}</td>
             <td>{{ fish.averageWeight }}</td>
             <td>{{ fish.level.description }}</td>
-            <td>
+            <td class="text-center">
               <button class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25" (click)="viewFish(fish.id)">View</button>
               <button class="btn btn-outline-warning btn-rounded btn-sm mx-1 shadow bg-warning bg-opacity-25" (click)="editFish(fish.id)">Edit</button>
               <button class="btn btn-outline-danger btn-rounded btn-sm mx-1 shadow bg-danger bg-opacity-25" (click)="deleteFish(fish.id)">Delete</button>
