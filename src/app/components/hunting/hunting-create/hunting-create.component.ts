@@ -22,7 +22,8 @@ export class HuntingCreateComponent implements OnInit {
     id: 0,
     numberOfFish: 0,
     competition: {
-      code: 0,
+      id:0,
+      code: "gg",
       date: new Date(),
       startTime: { hours: 12, minutes: 0 },
       endTime: { hours: 14, minutes: 30 },
@@ -105,15 +106,42 @@ IdentityDocumentType: any;
   }
 
   createHunting(): void {
-    this.huntingService.saveHunting(this.newHunting).subscribe(
-      (createdHunting) => {
-        console.log('Hunting created successfully:', createdHunting);
-       
-        this.router.navigate(['/hunting']);
+    // Check if the hunting entry already exists
+    this.huntingService.getHuntingById(
+      this.newHunting.competition.id,
+      this.newHunting.member.num,
+      this.newHunting.fish.id
+    ).subscribe(
+      (existingHunting) => {
+        if (existingHunting) {
+          // If the entry already exists, increment the numberOfFish property
+          existingHunting.numberOfFish += this.newHunting.numberOfFish;
+          this.huntingService.updateHunting(existingHunting).subscribe(
+            (updatedHunting) => {
+              console.log('Hunting updated successfully:', updatedHunting);
+              this.router.navigate(['/hunting']);
+            },
+            (error) => {
+              console.error('Error updating hunting:', error);
+            }
+          );
+        } else {
+          // If the entry does not exist, create a new hunting entry
+          this.huntingService.saveHunting(this.newHunting).subscribe(
+            (createdHunting) => {
+              console.log('Hunting created successfully:', createdHunting);
+              this.router.navigate(['/hunting']);
+            },
+            (error) => {
+              console.error('Error creating hunting:', error);
+            }
+          );
+        }
       },
       (error) => {
-        console.error('Error creating hunting:', error);
+        console.error('Error checking hunting existence:', error);
       }
     );
   }
+  
 }

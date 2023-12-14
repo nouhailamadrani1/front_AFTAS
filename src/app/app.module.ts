@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { TimeFormatPipe } from './models/time-format.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +32,7 @@ import { HeadComponent } from './components/head/head.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { ScriptComponent } from './components/script/script.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -63,7 +65,8 @@ import { HttpClientModule } from '@angular/common/http';
     HuntingViewComponent,
     HuntingUpdateComponent,
     HuntingCreateComponent,
-    HuntingListComponent
+    HuntingListComponent,
+    TimeFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,9 +10,14 @@
       </a>
     </div>
   
+    <div class="bg-white rounded-4 shadow  mb-5 bg-body-tertiar my-3">
+
+      <div class="bg-white rounded-4  p-3 mb-5  my-3">
+        <label for="statusFilter" class="form-label"> Search Member :</label>
+
+        <input type="text" class=" form-control border-bottom border-0 border-secondary border-3" placeholder="Search by Number, Name, or Family Name" [(ngModel)]="searchTerm" (input)="filterMembers()"  />
     
-    <div class="bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3">
-      <table class="table align-middle mb-0 bg-white btn-rounded p-2">
+      <table class="table align-middle mb-0   p-2">
         <thead class="bg-light">
           <tr>
             <th>Number</th>
@@ -26,7 +31,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let member of members">
+          <tr *ngFor="let member of filteredMembers">
             <td>{{ member.num }}</td>
             <td>{{ member.name }}</td>
             <td>{{ member.familyName }}</td>

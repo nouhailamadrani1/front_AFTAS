@@ -11,6 +11,8 @@ import { Member } from '../../../models/member.model';
 })
 export class MemberListComponent implements OnInit {
   members: Member[] = [];
+  filteredMembers: Member[] = [];
+  searchTerm: string = '';
 
   constructor(private memberService: MemberService, private toastService: ToastService) {}
 
@@ -24,7 +26,10 @@ export class MemberListComponent implements OnInit {
 
   loadMembers(): void {
     this.memberService.getAllMembers().subscribe(
-      (members) => (this.members = members),
+      (members) => {
+        this.members = members;
+        this.filterMembers(); // Apply initial filtering
+      },
       (error) => console.log(error)
     );
   }
@@ -47,6 +52,16 @@ export class MemberListComponent implements OnInit {
       (error) => {
         console.error(`Error deleting member with number ${num}:`, error);
       }
+    );
+  }
+
+  filterMembers(): void {
+    const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
+
+    this.filteredMembers = this.members.filter((member) =>
+      member.num.toString().includes(lowerCaseSearchTerm) ||
+      member.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+      member.familyName.toLowerCase().includes(lowerCaseSearchTerm)
     );
   }
 }

@@ -3,6 +3,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Time } from "@angular/common";
 import { Competition } from '../models/competition.model';
 
 @Injectable({
@@ -17,19 +18,19 @@ export class CompetitionService {
     return this.http.post<Competition>(this.baseUrl, competition);
   }
 
-  getCompetitionByCode(code: number): Observable<Competition> {
-    return this.http.get<Competition>(`${this.baseUrl}/${code}`);
+  getCompetitionById(id: number): Observable<Competition> {
+    return this.http.get<Competition>(`${this.baseUrl}/${id}`);
+  }
+
+  updateCompetition(id: number, updatedCompetition: Competition): Observable<Competition> {
+    return this.http.put<Competition>(`${this.baseUrl}/${id}`, updatedCompetition);
+  }
+
+  deleteCompetition(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
   getAllCompetitions(): Observable<Competition[]> {
     return this.http.get<Competition[]>(this.baseUrl);
-  }
-
-  updateCompetition(code: number, updatedCompetition: Competition): Observable<Competition> {
-    return this.http.put<Competition>(`${this.baseUrl}/${code}`, updatedCompetition);
-  }
-
-  deleteCompetition(code: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${code}`);
   }
 }

@@ -1,3 +1,5 @@
+// competition-list.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CompetitionService } from '../../../services/competition.service';
@@ -10,8 +12,8 @@ import { Competition } from '../../../models/competition.model';
 })
 export class CompetitionListComponent implements OnInit {
   competitions: Competition[] = [];
-  filteredCompetitions: Competition[] = []; // Add this line
-  selectedStatus: string | null = null; // Add this line
+  filteredCompetitions: Competition[] = [];
+  selectedStatus: string | null = null;
 
   constructor(private competitionService: CompetitionService, private router: Router) { }
 
@@ -49,24 +51,24 @@ export class CompetitionListComponent implements OnInit {
     }
   }
 
-  viewCompetition(code: number): void {
-    this.router.navigate(['/competitions', code]);
-    console.log(`View competition with code ${code}`);
+  viewCompetition(id: number): void {
+    this.router.navigate(['/competitions', id]);
+    console.log(`View competition with id ${id}`);
   }
 
-  editCompetition(code: number): void {
-    this.router.navigate(['/competitions/update/', code]);
-    console.log(`Edit competition with code ${code}`);
+  editCompetition(id: number): void {
+    this.router.navigate(['/competitions/update/', id]);
+    console.log(`Edit competition with id ${id}`);
   }
 
-  deleteCompetition(code: number): void {
-    this.competitionService.deleteCompetition(code).subscribe(
+  deleteCompetition(id: number): void {
+    this.competitionService.deleteCompetition(id).subscribe(
       () => {
-        console.log(`Competition with code ${code} deleted successfully.`);
+        console.log(`Competition with id ${id} deleted successfully.`);
         this.loadCompetitions();
       },
       (error) => {
-        console.error(`Error deleting competition with code ${code}:`, error);
+        console.error(`Error deleting competition with id ${id}:`, error);
       }
     );
   }

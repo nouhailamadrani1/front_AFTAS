@@ -8,6 +8,12 @@ import { Hunting } from '../models/hunting.model';
 @Injectable({
   providedIn: 'root'
 })
+// hunting.service.ts
+// ... other imports ...
+
+@Injectable({
+  providedIn: 'root'
+})
 export class HuntingService {
   private baseUrl = 'http://localhost:8080/aftas/huntings';
 
@@ -17,16 +23,18 @@ export class HuntingService {
     return this.http.post<Hunting>(this.baseUrl, hunting);
   }
 
-  getHuntingById(id: number): Observable<Hunting> {
-    return this.http.get<Hunting>(`${this.baseUrl}/${id}`);
+  // Modify the method to make an HTTP request
+  getHuntingById(competitionCode: number, memberNum: number, fishId: number): Observable<Hunting | null> {
+    const url = `${this.baseUrl}/find?competitionCode=${competitionCode}&memberNum=${memberNum}&fishId=${fishId}`;
+    return this.http.get<Hunting | null>(url);
   }
 
   getAllHuntings(): Observable<Hunting[]> {
     return this.http.get<Hunting[]>(this.baseUrl);
   }
 
-  updateHunting(id: number, updatedHunting: Hunting): Observable<Hunting> {
-    return this.http.put<Hunting>(`${this.baseUrl}/${id}`, updatedHunting);
+  updateHunting(updatedHunting: Hunting): Observable<Hunting> {
+    return this.http.put<Hunting>(`${this.baseUrl}/${updatedHunting.id}`, updatedHunting);
   }
 
   deleteHunting(id: number): Observable<void> {
