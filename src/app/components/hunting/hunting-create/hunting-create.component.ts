@@ -1,5 +1,5 @@
 // hunting-create.component.ts
-
+import { ToastService } from '../../../services/toast.service';
 import { Component, OnInit } from '@angular/core';
 import { HuntingService } from '../../../services/hunting.service';
 import { Hunting } from '../../../models/hunting.model';
@@ -61,7 +61,8 @@ IdentityDocumentType: any;
     private competitionService: CompetitionService,
     private memberService: MemberService,
     private fishService: FishService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {

@@ -1,13 +1,16 @@
 <!-- member-list.component.html -->
 
+<div id="toast-container" class="position-fixed top-0 let p-3" style="z-index: 11"></div>
+
 <div class="container mt-5">
     <div class="d-flex justify-content-between">
-      <h5>Members</h5>
+      <h4>   <img class="mx-3" width="50" height="50" src="https://img.icons8.com/ios-filled/50/00000/user.png" alt="user"/> Members</h4>
       <a routerLink="/members/create" class="btn shadow mb-3 rounded" style="background-color: #0c151e; color: #f9eeb9;">
         <b>+</b> Add Member
       </a>
     </div>
   
+    
     <div class="bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3">
       <table class="table align-middle mb-0 bg-white btn-rounded p-2">
         <thead class="bg-light">

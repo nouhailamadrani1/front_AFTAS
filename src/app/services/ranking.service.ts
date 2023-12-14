@@ -32,4 +32,8 @@ export class RankingService {
   deleteRanking(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+  getRankingsByDate(date: Date): Observable<Ranking[]> {
+    
+    return this.http.get<Ranking[]>(`${this.baseUrl}/rankings`, { params: { date: date.toISOString() } });
+  }
 }

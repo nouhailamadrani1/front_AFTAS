@@ -1,5 +1,5 @@
 // member-list.component.ts
-
+import { ToastService } from '../../../services/toast.service';
 import { Component, OnInit } from '@angular/core';
 import { MemberService } from '../../../services/member.service';
 import { Member } from '../../../models/member.model';
@@ -12,7 +12,11 @@ import { Member } from '../../../models/member.model';
 export class MemberListComponent implements OnInit {
   members: Member[] = [];
 
-  constructor(private memberService: MemberService) {}
+  constructor(private memberService: MemberService, private toastService: ToastService) {}
+
+  showSuccessToast(): void {
+    this.toastService.showSuccess('Operation completed successfully.');
+  }
 
   ngOnInit(): void {
     this.loadMembers();
@@ -33,19 +37,16 @@ export class MemberListComponent implements OnInit {
     console.log(`Edit member with number ${num}`);
   }
 
- 
   deleteMember(num: number): void {
     this.memberService.deleteMember(num).subscribe(
       () => {
-        console.log(`level with code ${num} deleted successfully.`);
-       
+        console.log(`Member with number ${num} deleted successfully.`);
+        this.showSuccessToast();
         this.loadMembers();
       },
       (error) => {
-        console.error(`Error deleting level with code ${num}:`, error);
+        console.error(`Error deleting member with number ${num}:`, error);
       }
     );
   }
-
-  
 }
