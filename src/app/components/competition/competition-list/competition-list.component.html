@@ -37,8 +37,8 @@
     <tr *ngFor="let competition of filteredCompetitions">
       <td>{{ competition.code }}</td>
       <td>{{ competition.date | date:'yyyy-MM-dd' }}</td>
-      <td>{{ competition.startTime | timeFormat }}</td>
-      <td>{{ competition.endTime | timeFormat }}</td>
+      <td>{{ competition.startTime }}</td>
+      <td>{{ competition.endTime  }}</td>
       <td>{{ competition.numberOfParticipants }}</td>
       <td>{{ competition.location }}</td>
       <td style="color: #ff0a0a; font-family: Impact, 'Arial Narrow Bold', sans-serif;">{{ competition.status }}</td>

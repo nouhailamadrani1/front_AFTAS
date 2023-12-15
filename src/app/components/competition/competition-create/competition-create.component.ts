@@ -34,7 +34,7 @@ export class CompetitionCreateComponent {
   createCompetition(): void {
     // Check if the location and date are provided
     if (!this.newCompetition.location || !this.newCompetition.date) {
-      console.error('Please provide both location and date.');
+      console.error('provide both location and date.');
       return;
     }
   
