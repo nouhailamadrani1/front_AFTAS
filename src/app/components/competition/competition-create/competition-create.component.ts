@@ -73,6 +73,6 @@ export class CompetitionCreateComponent {
 
   private formatDateCode(date: Date): string {
     const datePipe = new DatePipe('en-US');
-    return datePipe.transform(date, 'yMMdd') || '';
+    return datePipe.transform(date, 'y-MM-dd') || '';
   }
 }

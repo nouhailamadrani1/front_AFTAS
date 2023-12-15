@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CompetitionService } from '../../../services/competition.service';
 import { Competition } from '../../../models/competition.model';
-
+import { ToastService } from '../../../services/toast.service';
 @Component({
   selector: 'app-competition-list',
   templateUrl: './competition-list.component.html',
@@ -15,11 +15,15 @@ export class CompetitionListComponent implements OnInit {
   filteredCompetitions: Competition[] = [];
   selectedStatus: string | null = null;
 
-  constructor(private competitionService: CompetitionService, private router: Router) { }
+  constructor(private competitionService: CompetitionService, private router: Router, private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.loadCompetitions();
   }
+  showSuccessToast(): void {
+    this.toastService.showSuccess('Competition deleted successfully.');
+  }
+
 
   loadCompetitions(): void {
     this.competitionService.getAllCompetitions().subscribe(
@@ -64,8 +68,9 @@ export class CompetitionListComponent implements OnInit {
   deleteCompetition(id: number): void {
     this.competitionService.deleteCompetition(id).subscribe(
       () => {
-        console.log(`Competition with id ${id} deleted successfully.`);
+        console.log(`Competition  deleted successfully.`);
         this.loadCompetitions();
+        this.showSuccessToast();
       },
       (error) => {
         console.error(`Error deleting competition with id ${id}:`, error);
