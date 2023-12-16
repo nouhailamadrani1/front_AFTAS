@@ -1,1 +1,29 @@
-<p>ranking-create works!</p>
+<!-- ranking-create.component.html -->
+
+<div class="container mt-4">
+    <h2>Create Ranking</h2>
+    <form [formGroup]="rankingForm" (ngSubmit)="submitRanking()">
+      <div class="mb-3">
+        <label for="memberId" class="form-label">Member</label>
+        <select class="form-select" id="memberId" formControlName="memberId" required>
+          <option *ngFor="let member of members" [value]="member.num">{{ member.num }}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="competitionId" class="form-label">Competition</label>
+        <select class="form-select" id="competitionId" formControlName="competitionId" required>
+          <option *ngFor="let competition of competitions" [value]="competition.id">{{ competition.id }}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="rank" class="form-label">Rank</label>
+        <input type="number" class="form-control" id="rank" formControlName="rank" required>
+      </div>
+      <div class="mb-3">
+        <label for="score" class="form-label">Score</label>
+        <input type="number" class="form-control" id="score" formControlName="score" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  

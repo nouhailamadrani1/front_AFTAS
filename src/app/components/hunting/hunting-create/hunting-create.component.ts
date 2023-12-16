@@ -1,16 +1,17 @@
 // hunting-create.component.ts
-import { ToastService } from '../../../services/toast.service';
 import { Component, OnInit } from '@angular/core';
-import { HuntingService } from '../../../services/hunting.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Hunting } from '../../../models/hunting.model';
+
+import { ToastService } from '../../../services/toast.service';
+import { HuntingService } from '../../../services/hunting.service';
 import { CompetitionService } from '../../../services/competition.service';
-import { MemberService } from '../../../services/member.service';
+import { RankingService } from '../../../services/ranking.service';
 import { FishService } from '../../../services/fish.service';
 import { Competition } from '../../../models/competition.model';
 import { Member } from '../../../models/member.model';
-import { IdentityDocumentType } from "../../../models/IdentityDocumentType";
 import { Fish } from '../../../models/fish.model';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hunting-create',
@@ -18,64 +19,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./hunting-create.component.css']
 })
 export class HuntingCreateComponent implements OnInit {
-  newHunting: Hunting = {
-    id: 0,
-    numberOfFish: 0,
-    competition: {
-      id:0,
-      code: "gg",
-      date: new Date(),
-      startTime: { hours: 12, minutes: 0 },
-      endTime: { hours: 14, minutes: 30 },
-      numberOfParticipants: 0,
-      location: '',
-      amount: 0
-    },
-    member: {
-      num: 0,
-      name: '',
-      familyName: '',
-      accessionDate: new Date(),
-      nationality: '',
-      identityDocument: IdentityDocumentType.CIN,
-      identityNumber: ''
-    },
-    fish: {
-      id: 0,
-      name: '',
-      averageWeight: 0,
-      level: {
-        code: 0,
-        description: '',
-        points: 0
-      }
-    }
-  };
+  huntingForm: FormGroup;
 
   competitions: Competition[] = [];
   members: Member[] = [];
   fishes: Fish[] = [];
-IdentityDocumentType: any;
 
   constructor(
+    private formBuilder: FormBuilder,
     private huntingService: HuntingService,
     private competitionService: CompetitionService,
-    private memberService: MemberService,
+    private rankingService: RankingService,
     private fishService: FishService,
     private router: Router,
     private toastService: ToastService
-  ) {}
+  ) {
+    this.huntingForm = this.formBuilder.group({
+      memberNum: ['', Validators.required],
+      competitionId: ['', Validators.required],
+      numberOfFish: [1, Validators.required],
+      fishId: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     this.loadCompetitions();
-    this.loadMembers();
     this.loadFishes();
   }
 
   loadCompetitions(): void {
+    const today = new Date();
     this.competitionService.getAllCompetitions().subscribe(
       (competitions) => {
-        this.competitions = competitions;
+        this.competitions = competitions.filter(comp => {
+          const compDate = new Date(comp.date);
+          return compDate.getFullYear() === today.getFullYear() &&
+            compDate.getMonth() === today.getMonth() &&
+            compDate.getDate() === today.getDate();
+        });
+
+        if (this.competitions.length > 0) {
+          this.loadMembers(this.competitions[0].id);
+        }
       },
       (error) => {
         console.error('Error loading competitions:', error);
@@ -83,8 +68,8 @@ IdentityDocumentType: any;
     );
   }
 
-  loadMembers(): void {
-    this.memberService.getAllMembers().subscribe(
+  loadMembers(competitionId: number): void {
+    this.rankingService.getAllMembersByCompetition(competitionId).subscribe(
       (members) => {
         this.members = members;
       },
@@ -105,43 +90,29 @@ IdentityDocumentType: any;
     );
   }
 
+ 
   createHunting(): void {
-    // Check if the hunting entry already exists
-    this.huntingService.getHuntingById(
-      this.newHunting.competition.id,
-      this.newHunting.member.num,
-      this.newHunting.fish.id
-    ).subscribe(
-      (existingHunting) => {
-        if (existingHunting) {
-          // If the entry already exists, increment the numberOfFish property
-          existingHunting.numberOfFish += this.newHunting.numberOfFish;
-          this.huntingService.updateHunting(existingHunting).subscribe(
-            (updatedHunting) => {
-              console.log('Hunting updated successfully:', updatedHunting);
-              this.router.navigate(['/hunting']);
-            },
-            (error) => {
-              console.error('Error updating hunting:', error);
-            }
-          );
-        } else {
-          // If the entry does not exist, create a new hunting entry
-          this.huntingService.saveHunting(this.newHunting).subscribe(
-            (createdHunting) => {
-              console.log('Hunting created successfully:', createdHunting);
-              this.router.navigate(['/hunting']);
-            },
-            (error) => {
-              console.error('Error creating hunting:', error);
-            }
-          );
+    if (this.huntingForm.valid) {
+      // Create an instance of the Hunting type
+      const newHuntingData: Hunting = {
+        id: 0, // You can set this to 0 or some default value
+        memberNum: this.huntingForm.value.memberNum,
+        competitionId: this.huntingForm.value.competitionId,
+        numberOfFish: this.huntingForm.value.numberOfFish,
+        fishId: this.huntingForm.value.fishId,
+      };
+  
+      // Call the service to save the hunting entry
+      this.huntingService.saveHunting(newHuntingData).subscribe(
+        (createdHunting) => {
+          console.log('Hunting created successfully:', createdHunting);
+          this.router.navigate(['/hunting']);
+        },
+        (error) => {
+          console.error('Error creating hunting:', error);
         }
-      },
-      (error) => {
-        console.error('Error checking hunting existence:', error);
-      }
-    );
+      );
+    }
   }
   
 }

@@ -20,8 +20,12 @@ export class FishListComponent implements OnInit {
 
   loadFishes(): void {
     this.fishService.getAllFish().subscribe(
+     
       fishes => this.fishes = fishes,
-      error => console.log(error)
+      fishes =>   console.log('Fish Data:',fishes),
+    
+      // error => console.log(error),
+      
     );
   }
 

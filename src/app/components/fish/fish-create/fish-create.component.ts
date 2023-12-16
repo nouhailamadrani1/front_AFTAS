@@ -18,6 +18,7 @@ export class FishCreateComponent implements OnInit {
     name: '',
     averageWeight: 0,
     level: {
+      id: 0, // Initialize level.id
       code: 0,
       description: '',
       points: 0
@@ -32,7 +33,6 @@ export class FishCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Fetch levels when the component is initialized
     this.loadLevels();
   }
 
@@ -48,10 +48,10 @@ export class FishCreateComponent implements OnInit {
   }
 
   createFish(): void {
+    console.log('newFish:', this.newFish);
     this.fishService.saveFish(this.newFish).subscribe(
       (createdFish) => {
         console.log('Fish created successfully:', createdFish);
-        // Redirect to the fish list or view
         this.router.navigate(['/fishes']);
       },
       (error) => {

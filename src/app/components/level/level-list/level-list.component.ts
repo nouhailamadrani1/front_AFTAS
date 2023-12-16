@@ -29,23 +29,23 @@ export class LevelListComponent implements OnInit {
     );
   }
 
-  viewLevel(code: number): void {
-    console.log(`View level with code ${code}`);
+  viewLevel(id: number): void {
+    console.log(`View level with code ${id}`);
     // Implement the view functionality as needed
   }
 
-  editLevel(code: number): void {
-    console.log(`Delete level with code ${code}`);
+  editLevel(id: number): void {
+    console.log(`Delete level with code ${id}`);
   }
-  deleteLevel(code: number): void {
-    this.levelService.deleteLevel(code).subscribe(
+  deleteLevel(id: number): void {
+    this.levelService.deleteLevel(id).subscribe(
       () => {
-        console.log(`level with code ${code} deleted successfully.`);
+        console.log(`level with code ${id} deleted successfully.`);
        
         this.loadLevels();
       },
       (error) => {
-        console.error(`Error deleting level with code ${code}:`, error);
+        console.error(`Error deleting level with code ${id}:`, error);
       }
     );
   }

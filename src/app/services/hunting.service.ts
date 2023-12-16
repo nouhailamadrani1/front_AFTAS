@@ -40,4 +40,16 @@ export class HuntingService {
   deleteHunting(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+  
+  findExistingHunt(newHuntingData: Hunting): Observable<Hunting> {
+    const searchParams = {
+      memberNum: newHuntingData.memberNum,
+      competitionId: newHuntingData.competitionId,
+      fishId: newHuntingData.fishId
+    };
+  
+    // Make sure the endpoint is correct
+    return this.http.get<Hunting>(`${this.baseUrl}/hunts`, { params: searchParams });
+  }
+  
 }

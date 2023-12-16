@@ -1,5 +1,6 @@
 export interface Level {
-    code: number; 
+    id:number;
+    code?: number; 
     description: string;
     points: number;
 }

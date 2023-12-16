@@ -16,19 +16,19 @@ export class LevelService {
     return this.http.get<Level[]>(this.baseUrl);
   }
 
-  getLevelById(code: number): Observable<Level> {
-    return this.http.get<Level>(`${this.baseUrl}/${code}`);
+  getLevelById(id: number): Observable<Level> {
+    return this.http.get<Level>(`${this.baseUrl}/${id}`);
   }
 
   saveLevel(level: Level): Observable<Level> {
     return this.http.post<Level>(this.baseUrl, level);
   }
 
-  updateLevel(code: number, updatedLevel: Level): Observable<Level> {
-    return this.http.put<Level>(`${this.baseUrl}/${code}`, updatedLevel);
+  updateLevel(id: number, updatedLevel: Level): Observable<Level> {
+    return this.http.put<Level>(`${this.baseUrl}/${id}`, updatedLevel);
   }
 
-  deleteLevel(code: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${code}`);
+  deleteLevel(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }

@@ -13,6 +13,7 @@ export class RankingService {
 
   constructor(private http: HttpClient) { }
 
+
   saveRanking(ranking: Ranking): Observable<Ranking> {
     return this.http.post<Ranking>(this.baseUrl, ranking);
   }
@@ -29,11 +30,16 @@ export class RankingService {
     return this.http.put<Ranking>(`${this.baseUrl}/${id}`, updatedRanking);
   }
 
+
   deleteRanking(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
   getRankingsByDate(date: Date): Observable<Ranking[]> {
     
     return this.http.get<Ranking[]>(`${this.baseUrl}/rankings`, { params: { date: date.toISOString() } });
+  }
+  
+  getAllMembersByCompetition(competitionId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${competitionId}/members`);
   }
 }

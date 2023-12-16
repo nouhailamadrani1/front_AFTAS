@@ -1,4 +1,5 @@
 <!-- level-create.component.html -->
+<div id="toast-container" class="position-fixed top-0 let p-3" style="z-index: 11"></div>
 
 <div class="container">
     <div class="d-flex justify-content-center">
@@ -15,8 +16,10 @@
             [(ngModel)]="newLevel.points" name="points" required>
         </div>
         <div class="d-flex justify-content-center">
-          <button type="submit" class="btn shadow shadow mb-5 rounded"
+          <button type="submit"  class="btn shadow shadow mb-5 rounded"
             style="background-color: #0c151e; color: #f9eeb9">Create Level</button>
+            <button  routerLink="/levels" type="submit" class="btn mx-2 shadow shadow mb-5 rounded"
+            style="background-color: #67b3ff; color: #f9eeb9">Levels</button>
         </div>
       </form>
     </div>

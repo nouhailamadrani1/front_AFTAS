@@ -39,7 +39,9 @@ const routes: Routes = [
   { path: 'competitions', component: CompetitionListComponent },
   { path: 'competitions/create', component: CompetitionCreateComponent },
   { path: 'competitions/update/:code', component: CompetitionUpdateComponent },
-  { path: 'competitions/view/:code', component: CompetitionViewComponent },
+  { path: 'competitions/view/:id', component: CompetitionViewComponent },
+
+  
   
   { path: 'members', component: MemberListComponent },
   { path: 'members/create', component: MemberCreateComponent },
@@ -55,6 +57,7 @@ const routes: Routes = [
   { path: 'hunting/create', component: HuntingCreateComponent },
   { path: 'hunting/update/:id', component: HuntingUpdateComponent },
   { path: 'hunting/view/:id', component: HuntingViewComponent },
+  { path: 'fishes', component: FishListComponent },
   
 
 ];

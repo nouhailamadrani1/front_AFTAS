@@ -31,4 +31,7 @@ export class MemberService {
   deleteMember(num: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${num}`);
   }
+  getAllMembersByCompetition(competitionId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${competitionId}/members`);
+  }
 }

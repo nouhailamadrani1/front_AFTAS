@@ -1,10 +1,11 @@
 // competition-list.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CompetitionService } from '../../../services/competition.service';
 import { Competition } from '../../../models/competition.model';
 import { ToastService } from '../../../services/toast.service';
+import { RankingService } from '../../../services/ranking.service';
+
 @Component({
   selector: 'app-competition-list',
   templateUrl: './competition-list.component.html',
@@ -15,15 +16,20 @@ export class CompetitionListComponent implements OnInit {
   filteredCompetitions: Competition[] = [];
   selectedStatus: string | null = null;
 
-  constructor(private competitionService: CompetitionService, private router: Router, private toastService: ToastService) { }
+  constructor(
+    private competitionService: CompetitionService,
+    private router: Router,
+    private toastService: ToastService,
+    private rankingService: RankingService
+  ) { }
 
   ngOnInit(): void {
     this.loadCompetitions();
   }
+
   showSuccessToast(): void {
     this.toastService.showSuccess('Competition deleted successfully.');
   }
-
 
   loadCompetitions(): void {
     this.competitionService.getAllCompetitions().subscribe(
@@ -33,7 +39,7 @@ export class CompetitionListComponent implements OnInit {
           ...comp,
           status: this.getCompetitionStatus(comp.date)
         }));
-        
+
         // Set the filteredCompetitions initially to all competitions
         this.filteredCompetitions = this.competitions;
       },
@@ -55,10 +61,11 @@ export class CompetitionListComponent implements OnInit {
     }
   }
 
-  viewCompetition(id: number): void {
-    this.router.navigate(['/competitions', id]);
-    console.log(`View competition with id ${id}`);
+  
+  viewCompetitionDetails(competitionId: number): void {
+    this.router.navigate(['/competitions/view', competitionId]);
   }
+  
 
   editCompetition(id: number): void {
     this.router.navigate(['/competitions/update/', id]);
@@ -68,7 +75,7 @@ export class CompetitionListComponent implements OnInit {
   deleteCompetition(id: number): void {
     this.competitionService.deleteCompetition(id).subscribe(
       () => {
-        console.log(`Competition  deleted successfully.`);
+        console.log(`Competition deleted successfully.`);
         this.loadCompetitions();
         this.showSuccessToast();
       },

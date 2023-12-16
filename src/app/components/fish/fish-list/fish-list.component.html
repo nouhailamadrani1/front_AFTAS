@@ -19,10 +19,12 @@
         </thead>
         <tbody>
           <tr *ngFor="let fish of fishes">
+           
+
             <td>{{ fish.id }}</td>
             <td>{{ fish.name }}</td>
             <td>{{ fish.averageWeight }}</td>
-            <td>{{ fish.level.description }}</td>
+            <td>{{ fish.level.code }}</td>
             <td class="text-center">
               <button class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25" (click)="viewFish(fish.id)">View</button>
               <button class="btn btn-outline-warning btn-rounded btn-sm mx-1 shadow bg-warning bg-opacity-25" (click)="editFish(fish.id)">Edit</button>

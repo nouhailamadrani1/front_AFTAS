@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { TimeFormatPipe } from './models/time-format.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -66,12 +68,14 @@ import { DatePipe } from '@angular/common';
     HuntingUpdateComponent,
     HuntingCreateComponent,
     HuntingListComponent,
+    
     TimeFormatPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule, 
     FormsModule
   ],
   providers: [DatePipe],
