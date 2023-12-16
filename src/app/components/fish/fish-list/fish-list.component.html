@@ -1,4 +1,5 @@
 <!-- fish-list.component.html -->
+<div id="toast-container" class="position-fixed top-0 let p-3" style="z-index: 11"></div>
 
 <div class=" mt-5">
     <div class="d-flex justify-content-between"> 
@@ -21,13 +22,12 @@
           <tr *ngFor="let fish of fishes">
            
 
-            <td>{{ fish.id }}</td>
+            <td  style="color: #004bad; font-family: Impact, 'Arial Narrow Bold', sans-serif;">{{ fish.id }}</td>
             <td>{{ fish.name }}</td>
             <td>{{ fish.averageWeight }}</td>
-            <td>{{ fish.level.code }}</td>
+            <td  style="color: #ff0a0a; font-family: Impact, 'Arial Narrow Bold', sans-serif;">{{ fish.level.code }}</td>
             <td class="text-center">
               <button class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25" (click)="viewFish(fish.id)">View</button>
-              <button class="btn btn-outline-warning btn-rounded btn-sm mx-1 shadow bg-warning bg-opacity-25" (click)="editFish(fish.id)">Edit</button>
               <button class="btn btn-outline-danger btn-rounded btn-sm mx-1 shadow bg-danger bg-opacity-25" (click)="deleteFish(fish.id)">Delete</button>
             </td>
           </tr>

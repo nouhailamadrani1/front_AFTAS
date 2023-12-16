@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FishService } from '../../../services/fish.service';
 import { Fish } from '../../../models/fish.model';
+import { ToastService } from '../../../services/toast.service'; 
 
 @Component({
   selector: 'app-fish-list',
@@ -12,10 +13,14 @@ import { Fish } from '../../../models/fish.model';
 export class FishListComponent implements OnInit {
   fishes: Fish[] = [];
 
-  constructor(private fishService: FishService) {}
+  constructor(private fishService: FishService , private toastService: ToastService  ) {}
 
   ngOnInit(): void {
     this.loadFishes();
+  }
+  
+  showSuccessToast(): void {
+    this.toastService.showSuccess('Fish deleted successfully.');
   }
 
   loadFishes(): void {
@@ -47,6 +52,7 @@ export class FishListComponent implements OnInit {
         console.log(`level with code ${id} deleted successfully.`);
        
         this.loadFishes();
+        this.showSuccessToast();
       },
       (error) => {
         console.error(`Error deleting level with code ${id}:`, error);

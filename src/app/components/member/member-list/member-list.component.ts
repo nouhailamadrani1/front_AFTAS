@@ -46,8 +46,9 @@ export class MemberListComponent implements OnInit {
     this.memberService.deleteMember(num).subscribe(
       () => {
         console.log(`Member with number ${num} deleted successfully.`);
-        this.showSuccessToast();
+      
         this.loadMembers();
+        this.showSuccessToast();
       },
       (error) => {
         console.error(`Error deleting member with number ${num}:`, error);

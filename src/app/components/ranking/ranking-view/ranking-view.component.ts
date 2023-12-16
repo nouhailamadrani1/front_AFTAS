@@ -1,4 +1,5 @@
 // Inside ranking-view.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RankingService } from '../../../services/ranking.service';
@@ -39,7 +40,7 @@ export class RankingViewComponent implements OnInit {
 
     this.rankingService.getAllMembersByCompetition(this.competitionId).subscribe(
       (data) => {
-        console.log('Members:', data); // Log the data to the console
+        console.log('Members:', data); 
         this.members = data;
       },
       (error) => {
@@ -56,19 +57,20 @@ export class RankingViewComponent implements OnInit {
 
     this.rankingService.getRankingsByCompetition(this.competitionId).subscribe(
       (data) => {
-        this.rankings = data; 
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
+        this.rankings = data.sort((a, b) => b.score - a.score);
 
-  getMemberById(memberId: number): void {
-    this.memberService.getMemberByNum(memberId).subscribe(
-      (member: Member) => {
-        console.log(member)
-        this.selectedMember = member;
+        
+        let currentRank = 1;
+        let currentScore = this.rankings[0]?.score;
+
+        for (const ranking of this.rankings) {
+          if (ranking.score < currentScore) {
+            currentRank++;
+            currentScore = ranking.score;
+          }
+
+          ranking.rank = currentRank;
+        }
       },
       (error) => {
         console.error(error);

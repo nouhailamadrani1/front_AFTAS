@@ -1,3 +1,5 @@
+<div id="toast-container" class="position-fixed top-0 let p-3" style="z-index: 11"></div>
+
 <div class="container mt-5">
   <div class="d-flex justify-content-between">
     <h4>
@@ -23,14 +25,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let hunt of huntList">
-          <td>{{ hunt.id }}</td>
+          <td style="color: #1a09b4; font-family: Impact, 'Arial Narrow Bold', sans-serif;">{{ hunt.id }}</td>
           <td>{{ hunt.member?.name  }}</td>
           <td>{{ hunt.competition?.code }}</td>
           <td>{{ hunt.fish?.name }}</td>
-          <td>{{ hunt.numberOfFish }}</td>
+          <td style="color: #ff0a0a; font-family: Impact, 'Arial Narrow Bold', sans-serif;">{{ hunt.numberOfFish }}</td>
           <td>
             <button class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25" (click)="viewHunt(hunt.id)">View</button>
-            <button class="btn btn-outline-warning btn-rounded btn-sm mx-1 shadow bg-warning bg-opacity-25" (click)="editHunt(hunt.id)">Edit</button>
             <button class="btn btn-outline-danger btn-rounded btn-sm mx-1 shadow bg-danger bg-opacity-25" (click)="deleteHunt(hunt.id)">Delete</button>
           </td>
         </tr>

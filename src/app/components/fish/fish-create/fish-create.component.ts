@@ -1,11 +1,11 @@
-// fish-create.component.ts
-
+// Import the ToastService at the beginning of the file
 import { Component, OnInit } from '@angular/core';
 import { FishService } from '../../../services/fish.service';
 import { Fish } from '../../../models/fish.model';
 import { Level } from '../../../models/level.model';
 import { LevelService } from '../../../services/level.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../services/toast.service'; 
 
 @Component({
   selector: 'app-fish-create',
@@ -18,7 +18,7 @@ export class FishCreateComponent implements OnInit {
     name: '',
     averageWeight: 0,
     level: {
-      id: 0, // Initialize level.id
+      id: 0,
       code: 0,
       description: '',
       points: 0
@@ -29,12 +29,18 @@ export class FishCreateComponent implements OnInit {
   constructor(
     private fishService: FishService,
     private levelService: LevelService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService  
   ) {}
-
+ 
   ngOnInit(): void {
     this.loadLevels();
   }
+
+  showSuccessToast(): void {
+    this.toastService.showSuccess('Fish created successfully.');
+  }
+
 
   loadLevels(): void {
     this.levelService.getAllLevels().subscribe(
@@ -52,6 +58,7 @@ export class FishCreateComponent implements OnInit {
     this.fishService.saveFish(this.newFish).subscribe(
       (createdFish) => {
         console.log('Fish created successfully:', createdFish);
+        this.showSuccessToast();
         this.router.navigate(['/fishes']);
       },
       (error) => {
@@ -59,4 +66,6 @@ export class FishCreateComponent implements OnInit {
       }
     );
   }
+
+
 }

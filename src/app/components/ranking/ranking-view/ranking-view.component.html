@@ -1,11 +1,12 @@
 <!-- Inside ranking-view.component.html -->
+<div><h4>  <img class="mx-3" width="50" height="50" src="https://img.icons8.com/ios/50/leaderboard.png" alt="leaderboard"/>Ranking</h4></div>
 <div class="bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3">
     <h5 class="mx-1">Podium</h5>
     <div class="bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3 d-flex justify-content-center">
       <div class="container podium mt-4 w-50">
         <ng-container *ngFor="let ranking of rankings.slice(0, 3); let i = index">
           <div class="podium__item" [ngClass]="getPodiumClass(i)">
-            <p class="podium__city">{{ getMemberById(ranking.memberId) }} <br> Score: {{ ranking.score }}</p>
+            <p class="podium__city">{{ ranking.memberId }} <br> Score: {{ ranking.score }}</p>
             <div class="podium__rank">{{ i + 1 }}</div>
           </div>
         </ng-container>
@@ -15,7 +16,7 @@
     <div>
       <ul class="list-group">
         <li *ngFor="let ranking of rankings" class="list-group-item">
-          {{ getMemberById(ranking.memberId) }} - Score: {{ ranking.score }}
+          {{ ranking.memberId}} - Score: {{ ranking.score }}
         </li>
       </ul>
     </div>

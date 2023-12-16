@@ -1,29 +1,4 @@
-<a routerLink="/members/create" class="btn shadow mb-3 rounded" style="background-color: #0c151e; color: #f9eeb9;">
-  <b>+</b> Add Member
+<div class="text-center"><a routerLink="/rankings/create" class=" btn shadow mb-3 rounded" style="background-color: #0c151e; color: #f9eeb9;">
+  <b>+</b> Add Member To Competition
 </a>
-<div><h4>  <img class="mx-3" width="50" height="50" src="https://img.icons8.com/ios/50/leaderboard.png" alt="leaderboard"/>Ranking</h4></div>
-<div class="bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3">
-<div class="container podium mt-4">
-  <ng-container *ngFor="let ranking of getTopThreeRankedRankings(); let i = index">
-  
-    <div class="podium__item" [ngClass]="getPodiumClass(i)">
-      
-      <p class="podium__city ">{{ ranking.member.name }} <br class=""> Score: {{ ranking.score }}</p>
-      <div class="podium__rank">{{ i + 1 }}</div>
-    </div>
-  </ng-container>
-</div>
-</div>
-
-<div class="mt-4">
-  <h2>Rankings</h2>
-  <div class="mb-3">
-    <label for="dateFilter" class="form-label">Filter by Date:</label>
-    <input type="date" id="dateFilter" class="form-control" [(ngModel)]="currentDateFilter" (change)="filterRankingsByDate()">
-  </div>
-  <ul class="list-group">
-    <li *ngFor="let ranking of rankings" class="list-group-item">
-      Rank: {{ ranking.rank }}, Score: {{ ranking.score }}, Competition: {{ ranking.competition.date }}, Member: {{ ranking.member.name }}
-    </li>
-  </ul>
 </div>

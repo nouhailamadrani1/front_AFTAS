@@ -28,23 +28,23 @@ export class CompetitionCreateComponent {
     private toastService: ToastService // Inject ToastService
   ) { }
   showSuccessToast(): void {
-    this.toastService.showSuccess('Registration is allowed until 24 hours before the competition start');
+    this.toastService.showSuccess('Registration is allowed until 48 hours before the competition start OR The date is reserved ');
   }
 
   createCompetition(): void {
-    // Check if the location and date are provided
+    // Check if  date reseerved
     if (!this.newCompetition.location || !this.newCompetition.date) {
       console.error('provide both location and date.');
       return;
     }
   
-    // Check if the competition date is at least 24 hours in the future
+    // Check if 84 hours in the future
     const currentDate = new Date();
     const competitionDate = new Date(this.newCompetition.date);
     const timeDifference = competitionDate.getTime() - currentDate.getTime();
     const hoursDifference = timeDifference / (1000 * 60 * 60);
   
-    if (hoursDifference < 24) {
+    if (hoursDifference < 48) {
       console.error('Registration is allowed until 24 hours before the competition start.');
       
         this.showSuccessToast();
@@ -56,10 +56,10 @@ export class CompetitionCreateComponent {
     const locationCode = this.newCompetition.location.substring(0, 3).toLowerCase();
     const dateCode = this.formatDateCode(this.newCompetition.date);
   
-    // Combine the location code and date code to form the competition code
+    // Combine location code and date code to form 
     this.newCompetition.code = `${locationCode}-${dateCode}`;
   
-    // Save the competition
+    // Save competition
     this.competitionService.saveCompetition(this.newCompetition).subscribe(
       (createdCompetition) => {
         console.log('Competition created successfully:', createdCompetition);

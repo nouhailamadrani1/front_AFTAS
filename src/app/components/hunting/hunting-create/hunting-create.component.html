@@ -1,4 +1,6 @@
 <!-- hunting-create.component.html -->
+<div id="toast-container" class="position-fixed top-0 let p-3" style="z-index: 11"></div>
+
 <form (ngSubmit)="createHunting()" class="bg-white w-75 rounded-4 shadow p-3" [formGroup]="huntingForm">
   <h5 class="px-3 mb-3 text-center">Form Create Hunting</h5>
 
@@ -34,5 +36,7 @@
 
   <div class="d-flex justify-content-center">
     <button type="submit" class="btn shadow mb-5 rounded" style="background-color: #0c151e; color: #f9eeb9;">Create Hunting</button>
+    <button routerLink="/hunting" type="submit" class=" mx-2 btn shadow mb-5 rounded" style="background-color: #1978d6; color: #f9eeb9;">Huntings</button>
+
   </div>
 </form>

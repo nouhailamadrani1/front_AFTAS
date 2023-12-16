@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Hunting } from '../../../models/hunting.model';
-
 import { ToastService } from '../../../services/toast.service';
+
+
+
 import { HuntingService } from '../../../services/hunting.service';
 import { CompetitionService } from '../../../services/competition.service';
 import { RankingService } from '../../../services/ranking.service';
@@ -24,6 +26,10 @@ export class HuntingCreateComponent implements OnInit {
   competitions: Competition[] = [];
   members: Member[] = [];
   fishes: Fish[] = [];
+
+  showSuccessToast(): void {
+    this.toastService.showSuccess('Hunting entry created successfully.');
+  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,6 +52,7 @@ export class HuntingCreateComponent implements OnInit {
     this.loadCompetitions();
     this.loadFishes();
   }
+  
 
   loadCompetitions(): void {
     const today = new Date();
@@ -105,7 +112,7 @@ export class HuntingCreateComponent implements OnInit {
       // Call the service to save the hunting entry
       this.huntingService.saveHunting(newHuntingData).subscribe(
         (createdHunting) => {
-          console.log('Hunting created successfully:', createdHunting);
+          this.showSuccessToast(); // Call showSuccessToast after successful creation
           this.router.navigate(['/hunting']);
         },
         (error) => {

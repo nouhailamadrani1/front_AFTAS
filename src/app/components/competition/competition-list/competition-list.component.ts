@@ -30,7 +30,7 @@ export class CompetitionListComponent implements OnInit {
   }
 
   showSuccessToast(): void {
-    this.toastService.showSuccess('Competition deleted successfully.');
+    this.toastService.showSuccess(' operation successful <3.');
   }
 
   loadCompetitions(): void {
@@ -56,8 +56,6 @@ export class CompetitionListComponent implements OnInit {
 
     if (competitionDate < currentDate) {
       return 'Closed';
-    } else if (competitionDate.toDateString() === currentDate.toDateString()) {
-      return 'In Progress';
     } else {
       return 'Upcoming';
     }
@@ -103,9 +101,12 @@ export class CompetitionListComponent implements OnInit {
     this.huntingService.calculateAndAssignScores(competitionId).subscribe(
       (response) => {
         console.log(response);
+        this.showSuccessToast();
         this.loadCompetitions(); 
+       
       },
       (error) => console.log(error)
+     
     );
   }
 }

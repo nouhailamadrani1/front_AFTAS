@@ -6,6 +6,8 @@ import { CompetitionService } from '../../../services/competition.service';
 import { FishService } from '../../../services/fish.service'; 
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators'; 
+import { ToastService } from '../../../services/toast.service';
+
 
 
 @Component({
@@ -20,8 +22,14 @@ export class HuntingListComponent implements OnInit {
     private huntingService: HuntingService,
     private memberService: MemberService,
     private competitionService: CompetitionService,
-    private fishService: FishService 
+    private fishService: FishService ,
+    private toastService: ToastService,
   ) {}
+  
+  showSuccessToast(): void {
+    this.toastService.showSuccess(' operation successfully.');
+  }
+
 
   ngOnInit(): void {
     this.loadHunts();
@@ -102,6 +110,7 @@ loadHunts(): void {
       () => {
         console.log(`Hunt with ID ${id} deleted successfully.`);
         this.loadHunts();
+        this.showSuccessToast();
       },
       (error) => {
         console.error(`Error deleting hunt with ID ${id}:`, error);
