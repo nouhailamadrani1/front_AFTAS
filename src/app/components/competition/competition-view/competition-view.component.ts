@@ -28,8 +28,7 @@ export class CompetitionViewComponent implements OnInit {
   }
 
   loadCompetitionDetails(): void {
-    // Implement logic to fetch competition details based on this.competitionId
-    // Assign the fetched data to this.competitionDetails
+   
   }
 
   loadMembers(): void {
@@ -40,7 +39,7 @@ export class CompetitionViewComponent implements OnInit {
 
     this.rankingService.getAllMembersByCompetition(this.competitionId).subscribe(
       (data) => {
-        this.members = data; // Assuming the data is an array of members
+        this.members = data; 
       },
       (error) => {
         console.error(error);

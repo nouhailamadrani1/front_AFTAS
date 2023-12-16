@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MemberService } from '../../../services/member.service';
 import { CompetitionService } from '../../../services/competition.service';
 import { RankingService } from '../../../services/ranking.service';
-
+import { ToastService } from '../../../services/toast.service';
 @Component({
   selector: 'app-ranking-create',
   templateUrl: './ranking-create.component.html',
@@ -20,7 +20,8 @@ export class RankingCreateComponent implements OnInit {
     private router: Router,
     private memberService: MemberService,
     private competitionService: CompetitionService,
-    private rankingService: RankingService
+    private rankingService: RankingService,
+    private toastService: ToastService
   ) {
     this.rankingForm = this.formBuilder.group({
       memberId: ['', Validators.required],
@@ -28,6 +29,9 @@ export class RankingCreateComponent implements OnInit {
       rank: [0],
       score: [0]
     });
+  }
+  showSuccessToast(): void {
+    this.toastService.showSuccess(' operation successful <3.');
   }
 
   ngOnInit(): void {
@@ -91,6 +95,7 @@ export class RankingCreateComponent implements OnInit {
       this.rankingService.saveRanking(rankingData).subscribe(
         (createdRanking) => {
           console.log('Ranking created successfully:', createdRanking);
+          this.showSuccessToast();
         },
         (error) => {
           console.error('Error creating ranking:', error);

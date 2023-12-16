@@ -1,29 +1,18 @@
-<app-head></app-head>
+<body style="overflow-y: auto;" style="background-color: #fafbfc;">
 
-<body  style="overflow-y: auto;">
- 
-
-
- 
-    <div class="d-flex">
-      <div class=" " style="width: 15%;">
-        <app-side-bar></app-side-bar>
-      </div>
-      
-
-      <main class="p-5 " style="width: 85% ;background-color: #fafbfc;" >
-       
-        <router-outlet></router-outlet>
-
-      </main>
+  <div class="d-flex" >
+    <!-- Sidebar -->
+    <div class="sidebar" style="width: 15%; position: fixed; height: 100vh; overflow-y: auto; background-color: #343a40; color: #ffffff;">
+      <app-side-bar></app-side-bar>
     </div>
 
+    <!-- Main Content -->
+    <main class="px-5 py-3" style="margin-left: 15%; width: 85%; background-color: #fafbfc;">
+      <app-head></app-head>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 
   <app-script></app-script>
 
 </body>
-
-
-
-
-

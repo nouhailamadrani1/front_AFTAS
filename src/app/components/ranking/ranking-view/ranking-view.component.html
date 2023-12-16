@@ -1,22 +1,22 @@
 <!-- Inside ranking-view.component.html -->
-<div><h4>  <img class="mx-3" width="50" height="50" src="https://img.icons8.com/ios/50/leaderboard.png" alt="leaderboard"/>Ranking</h4></div>
-<div class="bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3">
-    <h5 class="mx-1">Podium</h5>
-    <div class="bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3 d-flex justify-content-center">
+<div><h5>  <img class="mx-3" width="50" height="50" src="https://img.icons8.com/ios/50/leaderboard.png" alt="leaderboard"/>Podium</h5></div>
+<div class="  ">
+    
+    <div class="bg-white rounded-4 shadow p-3  my-3 d-flex justify-content-center">
       <div class="container podium mt-4 w-50">
         <ng-container *ngFor="let ranking of rankings.slice(0, 3); let i = index">
           <div class="podium__item" [ngClass]="getPodiumClass(i)">
-            <p class="podium__city">{{ ranking.memberId }} <br> Score: {{ ranking.score }}</p>
-            <div class="podium__rank">{{ i + 1 }}</div>
+            <p class="podium__city fw-bold text-start p-2"> <img width="40" height="40" src="https://img.icons8.com/3d-fluency/40/crown.png" alt="crown"/> N° {{ ranking.memberId }} <br><img width="40" height="40" src="https://img.icons8.com/3d-fluency/40/counter.png" alt="counter"/> Score: {{ ranking.score }}</p>
+            <div class="podium__rank  fw-bold text-white">{{ i + 1 }}</div>
           </div>
         </ng-container>
       </div>
     </div>
-    <h5 class="mx-1">List Ranking</h5>
-    <div>
-      <ul class="list-group">
-        <li *ngFor="let ranking of rankings" class="list-group-item">
-          {{ ranking.memberId}} - Score: {{ ranking.score }}
+    <h5 class="mx-1 my-2"> <img width="40" height="40" class="mx-3" src="https://img.icons8.com/ios-filled/40/prize.png" alt="prize"/>List Ranking</h5>
+    <div class="bg-white rounded-4 shadow p-3 ">
+      <ul class="list-group ">
+        <li *ngFor="let ranking of rankings" class=" fw-bold list-group-item d-flex justify-content-between text-start">
+         <samp> <img width="30" height="30" src="https://img.icons8.com/3d-fluency/30/crown.png" alt="crown"/> Member N°: {{ ranking.memberId}}  </samp> <samp  class="text-start"> Score: {{ ranking.score }}  <img width="30" height="30" src="https://img.icons8.com/3d-fluency/30/counter.png" alt="counter"/> </samp>
         </li>
       </ul>
     </div>
