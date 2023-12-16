@@ -1,1 +1,23 @@
-<p>ranking-view works!</p>
+<!-- Inside ranking-view.component.html -->
+<div class="bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3">
+    <h5 class="mx-1">Podium</h5>
+    <div class="bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3 d-flex justify-content-center">
+      <div class="container podium mt-4 w-50">
+        <ng-container *ngFor="let ranking of rankings.slice(0, 3); let i = index">
+          <div class="podium__item" [ngClass]="getPodiumClass(i)">
+            <p class="podium__city">{{ getMemberById(ranking.memberId) }} <br> Score: {{ ranking.score }}</p>
+            <div class="podium__rank">{{ i + 1 }}</div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <h5 class="mx-1">List Ranking</h5>
+    <div>
+      <ul class="list-group">
+        <li *ngFor="let ranking of rankings" class="list-group-item">
+          {{ getMemberById(ranking.memberId) }} - Score: {{ ranking.score }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  

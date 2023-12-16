@@ -48,8 +48,11 @@ export class HuntingService {
       fishId: newHuntingData.fishId
     };
   
-    // Make sure the endpoint is correct
+
     return this.http.get<Hunting>(`${this.baseUrl}/hunts`, { params: searchParams });
+  }
+  calculateAndAssignScores(competitionId: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/calculate-scores/${competitionId}`, {});
   }
   
 }

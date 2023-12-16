@@ -5,6 +5,7 @@ import { CompetitionService } from '../../../services/competition.service';
 import { Competition } from '../../../models/competition.model';
 import { ToastService } from '../../../services/toast.service';
 import { RankingService } from '../../../services/ranking.service';
+import { HuntingService } from '../../../services/hunting.service';
 
 @Component({
   selector: 'app-competition-list',
@@ -20,7 +21,8 @@ export class CompetitionListComponent implements OnInit {
     private competitionService: CompetitionService,
     private router: Router,
     private toastService: ToastService,
-    private rankingService: RankingService
+    private rankingService: RankingService,
+    private huntingService: HuntingService
   ) { }
 
   ngOnInit(): void {
@@ -72,6 +74,10 @@ export class CompetitionListComponent implements OnInit {
     console.log(`Edit competition with id ${id}`);
   }
 
+  redirectToGetRankingsByCompetition(competitionId: number): void {
+    this.router.navigate(['/rankings/view', competitionId]);
+    console.log(` RankingsByCompetition with id ${competitionId}`);
+  }
   deleteCompetition(id: number): void {
     this.competitionService.deleteCompetition(id).subscribe(
       () => {
@@ -85,12 +91,21 @@ export class CompetitionListComponent implements OnInit {
     );
   }
 
-  // Add this method to update the filteredCompetitions based on the selected status
   updateFilteredCompetitions(): void {
     if (this.selectedStatus) {
       this.filteredCompetitions = this.competitions.filter(comp => comp.status === this.selectedStatus);
     } else {
       this.filteredCompetitions = this.competitions;
     }
+  }
+
+  calculateAndAssignScores(competitionId: number): void {
+    this.huntingService.calculateAndAssignScores(competitionId).subscribe(
+      (response) => {
+        console.log(response);
+        this.loadCompetitions(); 
+      },
+      (error) => console.log(error)
+    );
   }
 }

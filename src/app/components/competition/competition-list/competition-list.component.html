@@ -46,12 +46,17 @@
       <td style="color: #ff0a0a; font-family: Impact, 'Arial Narrow Bold', sans-serif;">{{ competition.status }}</td>
       <td>{{ competition.amount }}</td>
       <td>
-        <!-- <button class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25"
-          (click)="viewCompetition(competition.id)">View</button> -->
+       
           <button class="btn btn-outline-warning btn-rounded btn-sm mx-1 shadow bg-warning bg-opacity-25"
           (click)="viewCompetitionDetails(competition.id)">List M</button>
         <button class="btn btn-outline-danger btn-rounded btn-sm mx-1 shadow bg-danger bg-opacity-25"
           (click)="deleteCompetition(competition.id)">Delete</button>
+          <button class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25" (click)="calculateAndAssignScores(competition.id)">
+            Finish
+          </button>
+          <button  class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25" (click)="redirectToGetRankingsByCompetition(competition.id)">
+            Finish
+          </button>
       </td>
     </tr>
   </tbody>

@@ -42,4 +42,13 @@ export class RankingService {
   getAllMembersByCompetition(competitionId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${competitionId}/members`);
   }
+  getPodiumForCompetitionOnDate(competitionId: number, date: string): Observable<Ranking[]> {
+    const url = `${this.baseUrl}/competition/${competitionId}/date/${date}`;
+    return this.http.get<Ranking[]>(url);
+  }
+
+  getRankingsByCompetition(competitionId: number): Observable<any[]> {
+    const url = `${this.baseUrl}/competition/${competitionId}`;
+    return this.http.get<any[]>(url);
+  }
 }

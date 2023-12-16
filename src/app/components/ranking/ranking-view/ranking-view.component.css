@@ -1,0 +1,56 @@
+body {
+    font-family: sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  
+  .podium__item {
+    width: 200px;
+  }
+  
+  .podium__rank {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    color: #fff;
+  }
+  
+  .podium__city {
+    text-align: center;
+    padding: 0 .5rem;
+  }
+  
+  .podium__number {
+    width: 27px;
+    height: 75px;
+  }
+  
+  .podium .first {
+    min-height: 300px;
+    background: #fbee7f;
+  }
+  
+  .podium .second {
+    min-height: 200px;
+    background: #8eb2d9;
+  }
+  
+  .podium .third {
+    min-height: 100px;
+    background: #c28850;
+  }
+  
+  .container.podium {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-label {
+    margin-bottom: 0.5rem;
+  }
+  
