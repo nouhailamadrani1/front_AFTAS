@@ -11,7 +11,6 @@ import { RankingService } from '../../../services/ranking.service';
 })
 export class CompetitionViewComponent implements OnInit {
   competitionId: number = 0;
-  competitionDetails: any;
   members: any[] = [];
 
   constructor(
@@ -22,13 +21,8 @@ export class CompetitionViewComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.competitionId = +params['id'];
-      this.loadCompetitionDetails();
       this.loadMembers();
     });
-  }
-
-  loadCompetitionDetails(): void {
-   
   }
 
   loadMembers(): void {
@@ -39,7 +33,7 @@ export class CompetitionViewComponent implements OnInit {
 
     this.rankingService.getAllMembersByCompetition(this.competitionId).subscribe(
       (data) => {
-        this.members = data; 
+        this.members = data;
       },
       (error) => {
         console.error(error);

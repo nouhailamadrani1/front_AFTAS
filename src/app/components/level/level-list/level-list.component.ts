@@ -1,5 +1,3 @@
-// level-list.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { LevelService } from '../../../services/level.service';
 import { Level } from '../../../models/level.model';
@@ -9,10 +7,11 @@ import { Level } from '../../../models/level.model';
   templateUrl: './level-list.component.html',
   styleUrls: ['./level-list.component.css']
 })
+
 export class LevelListComponent implements OnInit {
   levels: Level[] = [];
 
-  constructor(private levelService: LevelService) {}
+  constructor(private levelService: LevelService) { }
 
   ngOnInit(): void {
     this.loadLevels();
@@ -31,17 +30,17 @@ export class LevelListComponent implements OnInit {
 
   viewLevel(id: number): void {
     console.log(`View level with code ${id}`);
-    // Implement the view functionality as needed
+
   }
 
   editLevel(id: number): void {
     console.log(`Delete level with code ${id}`);
   }
+
   deleteLevel(id: number): void {
     this.levelService.deleteLevel(id).subscribe(
       () => {
         console.log(`level with code ${id} deleted successfully.`);
-       
         this.loadLevels();
       },
       (error) => {

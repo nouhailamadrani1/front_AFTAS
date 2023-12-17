@@ -1,5 +1,4 @@
 // toast.service.ts
-
 import { Injectable } from '@angular/core';
 
 declare var bootstrap: any;
@@ -22,11 +21,9 @@ export class ToastService {
     if (toastContainer) {
       toastContainer.appendChild(toast);
 
-      // Cast to any to avoid TypeScript error
       const bsToast = new (bootstrap.Toast as any)(toast);
       bsToast.show();
-
-      // Remove the toast after it's hidden
+  
       bsToast.addEventListener('hidden.bs.toast', () => {
         toastContainer.removeChild(toast);
       });

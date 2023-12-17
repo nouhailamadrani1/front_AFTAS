@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+// import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { TimeFormatPipe } from './models/time-format.pipe';
 import { BrowserModule } from '@angular/platform-browser';
@@ -76,6 +77,7 @@ import { DatePipe } from '@angular/common';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule, 
+    // NgbPaginationModule, 
     FormsModule
   ],
   providers: [DatePipe],

@@ -5,11 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Hunting } from '../models/hunting.model';
 
-@Injectable({
-  providedIn: 'root'
-})
-// hunting.service.ts
-// ... other imports ...
 
 @Injectable({
   providedIn: 'root'
@@ -22,13 +17,7 @@ export class HuntingService {
   saveHunting(hunting: Hunting): Observable<Hunting> {
     return this.http.post<Hunting>(this.baseUrl, hunting);
   }
-
-  // Modify the method to make an HTTP request
-  getHuntingById(competitionCode: number, memberNum: number, fishId: number): Observable<Hunting | null> {
-    const url = `${this.baseUrl}/find?competitionCode=${competitionCode}&memberNum=${memberNum}&fishId=${fishId}`;
-    return this.http.get<Hunting | null>(url);
-  }
-
+  
   getAllHuntings(): Observable<Hunting[]> {
     return this.http.get<Hunting[]>(this.baseUrl);
   }
@@ -41,16 +30,7 @@ export class HuntingService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
   
-  findExistingHunt(newHuntingData: Hunting): Observable<Hunting> {
-    const searchParams = {
-      memberNum: newHuntingData.memberNum,
-      competitionId: newHuntingData.competitionId,
-      fishId: newHuntingData.fishId
-    };
-  
-
-    return this.http.get<Hunting>(`${this.baseUrl}/hunts`, { params: searchParams });
-  }
+ 
   calculateAndAssignScores(competitionId: number): Observable<any> {
     return this.http.post(`${this.baseUrl}/calculate-scores/${competitionId}`, {});
   }

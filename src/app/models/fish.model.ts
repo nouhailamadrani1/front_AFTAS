@@ -1,4 +1,3 @@
-import { Level } from './level.model';
 
 export interface Fish {
   id: number;

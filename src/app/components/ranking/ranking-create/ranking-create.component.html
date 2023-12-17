@@ -1,31 +1,36 @@
 <div id="toast-container" class="position-fixed top-0 let p-3" style="z-index: 11"></div>
-
 <div class="container mt-4 bg-white w-75 rounded-4 shadow p-3 mx-auto">
   <h4 class="text-center">Create Ranking</h4>
   <form [formGroup]="rankingForm" (ngSubmit)="submitRanking()" class="">
     <div class="mb-3">
       <label for="memberId" class="form-label">Member</label>
-      <select class="form-select border-bottom border-0 border-secondary border-3" id="memberId" formControlName="memberId" required>
+      <select class="form-select border-bottom border-0 border-secondary border-3" id="memberId"
+        formControlName="memberId" required>
         <option *ngFor="let member of members" [value]="member.num">{{ member.name }} {{ member.familyName }}</option>
       </select>
     </div>
     <div class="mb-3">
       <label for="competitionId" class="form-label">Competition</label>
-      <select class="form-select border-bottom border-0 border-secondary border-3" id="competitionId" formControlName="competitionId" required>
+      <select class="form-select border-bottom border-0 border-secondary border-3" id="competitionId"
+        formControlName="competitionId" required>
         <option *ngFor="let competition of competitions" [value]="competition.id">{{ competition.code }}</option>
       </select>
     </div>
     <div class="mb-3">
       <label for="rank" class="form-label">Rank</label>
-      <input type="number" class="form-control border-bottom border-0 border-secondary border-3" id="rank" formControlName="rank" required>
+      <input type="number" class="form-control border-bottom border-0 border-secondary border-3" id="rank"
+        formControlName="rank" required>
     </div>
     <div class="mb-3">
       <label for="score" class="form-label">Score</label>
-      <input type="number" class="form-control border-bottom border-0 border-secondary border-3" id="score" formControlName="score" required>
+      <input type="number" class="form-control border-bottom border-0 border-secondary border-3" id="score"
+        formControlName="score" required>
     </div>
     <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-primary shadow rounded" style="background-color: #0c151e; color: #f9eeb9;">Submit</button>
-      <button routerLink="/rankings" type="submit" class="mx-2 btn shadow rounded" style="background-color: #1978d6; color: #f9eeb9;">Huntings</button>
+      <button type="submit" class="btn btn-primary shadow rounded"
+        style="background-color: #0c151e; color: #f9eeb9;">Submit</button>
+      <button routerLink="/rankings" type="submit" class="mx-2 btn shadow rounded"
+        style="background-color: #1978d6; color: #f9eeb9;">Huntings</button>
     </div>
   </form>
 </div>

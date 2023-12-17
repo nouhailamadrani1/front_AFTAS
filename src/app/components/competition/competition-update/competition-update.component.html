@@ -1,10 +1,8 @@
-<!-- competition-update.component.html -->
 
 <div class="container">
   <div class="d-flex justify-content-center">
     <form (submit)="updateCompetition()" class="bg-white w-75 rounded-4 shadow p-3 bg-body-tertiar">
       <h5 class="px-3 mb-3 text-center">Update Competition</h5>
-      <!-- Add your form fields for updating competition properties -->
       <div class="mb-3 px-3">
         <label for="date" class="form-label">Date</label>
         <input type="date" class="form-control" id="date" [(ngModel)]="competition.date" name="date" required>
@@ -19,7 +17,6 @@
           <input type="time" class="form-control" id="endTime" [(ngModel)]="competition.endTime" name="endTime" required>
         </div>
       </div>
-      <!-- Add other form fields as needed -->
       <div class="d-flex justify-content-center">
         <button type="submit" class="btn shadow mb-5 rounded" style="background-color: #0c151e; color: #f9eeb9">
           Update Competition

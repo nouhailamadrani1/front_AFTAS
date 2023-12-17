@@ -1,11 +1,10 @@
-// Import the ToastService at the beginning of the file
 import { Component, OnInit } from '@angular/core';
 import { FishService } from '../../../services/fish.service';
 import { Fish } from '../../../models/fish.model';
 import { Level } from '../../../models/level.model';
 import { LevelService } from '../../../services/level.service';
 import { Router } from '@angular/router';
-import { ToastService } from '../../../services/toast.service'; 
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-fish-create',
@@ -30,9 +29,9 @@ export class FishCreateComponent implements OnInit {
     private fishService: FishService,
     private levelService: LevelService,
     private router: Router,
-    private toastService: ToastService  
-  ) {}
- 
+    private toastService: ToastService
+  ) { }
+
   ngOnInit(): void {
     this.loadLevels();
   }
@@ -40,7 +39,6 @@ export class FishCreateComponent implements OnInit {
   showSuccessToast(): void {
     this.toastService.showSuccess('Fish created successfully.');
   }
-
 
   loadLevels(): void {
     this.levelService.getAllLevels().subscribe(
@@ -66,6 +64,4 @@ export class FishCreateComponent implements OnInit {
       }
     );
   }
-
-
 }

@@ -1,39 +1,43 @@
-<!-- member-create.component.html -->
-
 <div class="container">
-    <div class="d-flex justify-content-center">
-      <form (submit)="createMember()" class="bg-white w-75 rounded-4 shadow p-3 ">
-        <h5 class="px-3 mb-3 text-center">Form Create Member</h5>
-        <div class="mb-3 px-3">
-          <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control border-bottom border-0 border-secondary border-3" id="name" [(ngModel)]="newMember.name" name="name" required>
-        </div>
-        <div class="mb-3 px-3">
-          <label for="familyName" class="form-label">Family Name</label>
-          <input type="text" class="form-control border-bottom border-0 border-secondary border-3" id="familyName" [(ngModel)]="newMember.familyName" name="familyName" required>
-        </div>
-        <div class="mb-3 px-3">
-          <label for="accessionDate" class="form-label">Accession Date</label>
-          <input type="date" class="form-control border-bottom border-0 border-secondary border-3" id="accessionDate" [(ngModel)]="newMember.accessionDate" name="accessionDate" required>
-        </div>
-        <div class="mb-3 px-3">
-          <label for="nationality" class="form-label">Nationality</label>
-          <input type="text" class="form-control border-bottom border-0 border-secondary border-3" id="nationality" [(ngModel)]="newMember.nationality" name="nationality" required>
-        </div>
-        <div class="mb-3 px-3">
-            <label for="identityDocument" class="form-label">I Document Type</label>
-            <select class="form-select border-bottom border-0 border-secondary border-3" id="identityDocument" [(ngModel)]="newMember.identityDocument" name="identityDocument" required>
-              <option *ngFor="let docType of identityDocumentTypes" [ngValue]="docType">{{ docType }}</option>
-            </select>
-          </div>
-        <div class="mb-3 px-3">
-          <label for="identityNumber" class="form-label">Identity Number</label>
-          <input type="text" class="form-control border-bottom border-0 border-secondary border-3" id="identityNumber" [(ngModel)]="newMember.identityNumber" name="identityNumber" required>
-        </div>
-        <div class="d-flex justify-content-center">
-          <button type="submit" class="btn shadow mb-5 rounded" style="background-color: #0c151e; color: #f9eeb9;">Create Member</button>
-        </div>
-      </form>
-    </div>
+  <div class="d-flex justify-content-center">
+    <form (submit)="createMember()" class="bg-white w-75 rounded-4 shadow p-3 ">
+      <h5 class="px-3 mb-3 text-center">Form Create Member</h5>
+      <div class="mb-3 px-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control border-bottom border-0 border-secondary border-3" id="name"
+          [(ngModel)]="newMember.name" name="name" required>
+      </div>
+      <div class="mb-3 px-3">
+        <label for="familyName" class="form-label">Family Name</label>
+        <input type="text" class="form-control border-bottom border-0 border-secondary border-3" id="familyName"
+          [(ngModel)]="newMember.familyName" name="familyName" required>
+      </div>
+      <div class="mb-3 px-3">
+        <label for="accessionDate" class="form-label">Accession Date</label>
+        <input type="date" class="form-control border-bottom border-0 border-secondary border-3" id="accessionDate"
+          [(ngModel)]="newMember.accessionDate" name="accessionDate" required>
+      </div>
+      <div class="mb-3 px-3">
+        <label for="nationality" class="form-label">Nationality</label>
+        <input type="text" class="form-control border-bottom border-0 border-secondary border-3" id="nationality"
+          [(ngModel)]="newMember.nationality" name="nationality" required>
+      </div>
+      <div class="mb-3 px-3">
+        <label for="identityDocument" class="form-label">I Document Type</label>
+        <select class="form-select border-bottom border-0 border-secondary border-3" id="identityDocument"
+          [(ngModel)]="newMember.identityDocument" name="identityDocument" required>
+          <option *ngFor="let docType of identityDocumentTypes" [ngValue]="docType">{{ docType }}</option>
+        </select>
+      </div>
+      <div class="mb-3 px-3">
+        <label for="identityNumber" class="form-label">Identity Number</label>
+        <input type="text" class="form-control border-bottom border-0 border-secondary border-3" id="identityNumber"
+          [(ngModel)]="newMember.identityNumber" name="identityNumber" required>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn shadow mb-5 rounded" style="background-color: #0c151e; color: #f9eeb9;">Create
+          Member</button>
+      </div>
+    </form>
   </div>
-  
+</div>

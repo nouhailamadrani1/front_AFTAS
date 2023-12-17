@@ -1,5 +1,4 @@
-// level-create.component.ts
-import { Router } from '@angular/router'; // Import Router
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { LevelService } from '../../../services/level.service';
 import { Level } from '../../../models/level.model';
@@ -12,24 +11,21 @@ import { ToastService } from '../../../services/toast.service';
 })
 export class LevelCreateComponent {
   newLevel: Level = {
-    id:0,
-    code:0,
+    id: 0,
+    code: 0,
     description: '',
     points: 0
   };
   showSuccessToast(): void {
     this.toastService.showSuccess('Registration is allowed until 24 hours before the competition start');
   }
-
-
-  constructor(private levelService: LevelService, private router: Router, private toastService: ToastService) {}
+  constructor(private levelService: LevelService, private router: Router, private toastService: ToastService) { }
 
   createLevel(): void {
     this.levelService.saveLevel(this.newLevel).subscribe(
       (createdLevel) => {
         console.log('Level created successfully:', createdLevel);
-        
-        this.showSuccessToast(); 
+        this.showSuccessToast();
         this.router.navigate(['/levels']);
       },
       (error) => {

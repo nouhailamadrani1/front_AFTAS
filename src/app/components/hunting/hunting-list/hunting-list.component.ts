@@ -8,8 +8,6 @@ import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators'; 
 import { ToastService } from '../../../services/toast.service';
 
-
-
 @Component({
   selector: 'app-hunting-list',
   templateUrl: './hunting-list.component.html',
@@ -30,11 +28,9 @@ export class HuntingListComponent implements OnInit {
     this.toastService.showSuccess(' operation successfully.');
   }
 
-
   ngOnInit(): void {
     this.loadHunts();
   }
-
  
 loadHunts(): void {
   this.huntingService.getAllHuntings().subscribe(
@@ -43,14 +39,12 @@ loadHunts(): void {
         const memberObs = this.memberService.getMemberByNum(hunt.memberNum);
         const competitionObs = this.competitionService.getCompetitionById(hunt.competitionId);
         const fishObs = this.fishService.getFishById(hunt.fishId);
-
         return forkJoin({ member: memberObs, competition: competitionObs, fish: fishObs })
           .pipe(
-           
+        
             map(details => ({ ...hunt, ...details }))
           );
       });
-
       forkJoin(observables).subscribe(
         huntsWithDetails => {
           this.huntList = huntsWithDetails;
@@ -61,6 +55,7 @@ loadHunts(): void {
     error => console.log(error)
   );
 }
+
   fetchMemberDetails(memberNum: number): void {
     this.memberService.getMemberByNum(memberNum).subscribe(
       member => {

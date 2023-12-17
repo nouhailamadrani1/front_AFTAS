@@ -1,4 +1,4 @@
-// member-list.component.ts
+
 import { ToastService } from '../../../services/toast.service';
 import { Component, OnInit } from '@angular/core';
 import { MemberService } from '../../../services/member.service';
@@ -9,12 +9,13 @@ import { Member } from '../../../models/member.model';
   templateUrl: './member-list.component.html',
   styleUrls: ['./member-list.component.css']
 })
+
 export class MemberListComponent implements OnInit {
   members: Member[] = [];
   filteredMembers: Member[] = [];
   searchTerm: string = '';
 
-  constructor(private memberService: MemberService, private toastService: ToastService) {}
+  constructor(private memberService: MemberService, private toastService: ToastService) { }
 
   showSuccessToast(): void {
     this.toastService.showSuccess('Operation completed successfully.');
@@ -28,7 +29,7 @@ export class MemberListComponent implements OnInit {
     this.memberService.getAllMembers().subscribe(
       (members) => {
         this.members = members;
-        this.filterMembers(); // Apply initial filtering
+        this.filterMembers();
       },
       (error) => console.log(error)
     );
@@ -46,7 +47,6 @@ export class MemberListComponent implements OnInit {
     this.memberService.deleteMember(num).subscribe(
       () => {
         console.log(`Member with number ${num} deleted successfully.`);
-      
         this.loadMembers();
         this.showSuccessToast();
       },

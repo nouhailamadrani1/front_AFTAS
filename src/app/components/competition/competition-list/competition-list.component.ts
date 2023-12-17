@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { CompetitionService } from '../../../services/competition.service';
 import { Competition } from '../../../models/competition.model';
 import { ToastService } from '../../../services/toast.service';
-import { RankingService } from '../../../services/ranking.service';
 import { HuntingService } from '../../../services/hunting.service';
 
 @Component({
@@ -12,7 +11,9 @@ import { HuntingService } from '../../../services/hunting.service';
   templateUrl: './competition-list.component.html',
   styleUrls: ['./competition-list.component.css']
 })
+
 export class CompetitionListComponent implements OnInit {
+
   competitions: Competition[] = [];
   filteredCompetitions: Competition[] = [];
   selectedStatus: string | null = null;
@@ -21,7 +22,6 @@ export class CompetitionListComponent implements OnInit {
     private competitionService: CompetitionService,
     private router: Router,
     private toastService: ToastService,
-    private rankingService: RankingService,
     private huntingService: HuntingService
   ) { }
 
@@ -36,13 +36,10 @@ export class CompetitionListComponent implements OnInit {
   loadCompetitions(): void {
     this.competitionService.getAllCompetitions().subscribe(
       competitions => {
-        // Update competition status based on the current date
         this.competitions = competitions.map(comp => ({
           ...comp,
           status: this.getCompetitionStatus(comp.date)
         }));
-
-        // Set the filteredCompetitions initially to all competitions
         this.filteredCompetitions = this.competitions;
       },
       error => console.log(error)
@@ -50,7 +47,6 @@ export class CompetitionListComponent implements OnInit {
   }
 
   getCompetitionStatus(date: Date): string {
-    // Compare the competition date with the current date
     const currentDate = new Date();
     const competitionDate = new Date(date);
 
@@ -61,11 +57,9 @@ export class CompetitionListComponent implements OnInit {
     }
   }
 
-  
   viewCompetitionDetails(competitionId: number): void {
     this.router.navigate(['/competitions/view', competitionId]);
   }
-  
 
   editCompetition(id: number): void {
     this.router.navigate(['/competitions/update/', id]);
@@ -76,6 +70,7 @@ export class CompetitionListComponent implements OnInit {
     this.router.navigate(['/rankings/view', competitionId]);
     console.log(` RankingsByCompetition with id ${competitionId}`);
   }
+
   deleteCompetition(id: number): void {
     this.competitionService.deleteCompetition(id).subscribe(
       () => {
@@ -102,11 +97,9 @@ export class CompetitionListComponent implements OnInit {
       (response) => {
         console.log(response);
         this.showSuccessToast();
-        this.loadCompetitions(); 
-       
+        this.loadCompetitions();
       },
       (error) => console.log(error)
-     
     );
   }
 }

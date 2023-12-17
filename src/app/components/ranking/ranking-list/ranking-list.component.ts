@@ -11,7 +11,7 @@ export class RankingListComponent implements OnInit {
   rankings: Ranking[] = [];
   currentDateFilter: any = '';
 
-  constructor(private rankingService: RankingService) {}
+  constructor(private rankingService: RankingService) { }
 
   ngOnInit(): void {
     this.loadRankings();
@@ -30,9 +30,8 @@ export class RankingListComponent implements OnInit {
 
   filterRankingsByDate(): void {
     if (this.currentDateFilter) {
-   
-        const parsedDate = new Date(this.currentDateFilter);
-        const isoDate = parsedDate.toISOString();
+      const parsedDate = new Date(this.currentDateFilter);
+      const isoDate = parsedDate.toISOString();
       this.rankingService.getRankingsByDate(this.currentDateFilter).subscribe(
         (rankings) => {
           this.rankings = rankings;
@@ -42,18 +41,15 @@ export class RankingListComponent implements OnInit {
         }
       );
     } else {
-      // If the date filter is empty, reload all rankings
       this.loadRankings();
     }
   }
 
   getTopThreeRankedRankings(): Ranking[] {
-    // Sort rankings based on the score in descending order and get the top three
     return this.rankings.slice().sort((a, b) => b.score - a.score).slice(0, 3);
   }
 
   getPodiumClass(index: number): string {
-    // Add your logic to determine the class based on the index
     switch (index) {
       case 0:
         return 'first';

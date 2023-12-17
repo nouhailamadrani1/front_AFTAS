@@ -4,9 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Hunting } from '../../../models/hunting.model';
 import { ToastService } from '../../../services/toast.service';
-
-
-
 import { HuntingService } from '../../../services/hunting.service';
 import { CompetitionService } from '../../../services/competition.service';
 import { RankingService } from '../../../services/ranking.service';
@@ -20,9 +17,9 @@ import { Fish } from '../../../models/fish.model';
   templateUrl: './hunting-create.component.html',
   styleUrls: ['./hunting-create.component.css']
 })
+
 export class HuntingCreateComponent implements OnInit {
   huntingForm: FormGroup;
-
   competitions: Competition[] = [];
   members: Member[] = [];
   fishes: Fish[] = [];
@@ -52,7 +49,6 @@ export class HuntingCreateComponent implements OnInit {
     this.loadCompetitions();
     this.loadFishes();
   }
-  
 
   loadCompetitions(): void {
     const today = new Date();
@@ -97,22 +93,20 @@ export class HuntingCreateComponent implements OnInit {
     );
   }
 
- 
   createHunting(): void {
     if (this.huntingForm.valid) {
-      // Create an instance of the Hunting type
+
       const newHuntingData: Hunting = {
-        id: 0, // You can set this to 0 or some default value
+        id: 0,
         memberNum: this.huntingForm.value.memberNum,
         competitionId: this.huntingForm.value.competitionId,
         numberOfFish: this.huntingForm.value.numberOfFish,
         fishId: this.huntingForm.value.fishId,
       };
-  
-      // Call the service to save the hunting entry
+
       this.huntingService.saveHunting(newHuntingData).subscribe(
         (createdHunting) => {
-          this.showSuccessToast(); // Call showSuccessToast after successful creation
+          this.showSuccessToast();
           this.router.navigate(['/hunting']);
         },
         (error) => {
@@ -121,5 +115,4 @@ export class HuntingCreateComponent implements OnInit {
       );
     }
   }
-  
 }

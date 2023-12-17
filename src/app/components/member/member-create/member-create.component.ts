@@ -1,5 +1,3 @@
-// member-create.component.ts
-
 import { Component } from '@angular/core';
 import { MemberService } from '../../../services/member.service';
 import { Member } from '../../../models/member.model';
@@ -11,6 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './member-create.component.html',
   styleUrls: ['./member-create.component.css']
 })
+
 export class MemberCreateComponent {
   newMember: Member = {
     num: 0,
@@ -18,19 +17,17 @@ export class MemberCreateComponent {
     familyName: '',
     accessionDate: new Date(),
     nationality: '',
-    identityDocument: IdentityDocumentType.CIN, 
+    identityDocument: IdentityDocumentType.CIN,
     identityNumber: ''
   };
-
   identityDocumentTypes = Object.values(IdentityDocumentType);
 
-  constructor(private memberService: MemberService, private router: Router) {}
+  constructor(private memberService: MemberService, private router: Router) { }
 
   createMember(): void {
     this.memberService.saveMember(this.newMember).subscribe(
       (createdMember) => {
         console.log('Member created successfully:', createdMember);
-       
         this.router.navigate(['/members']);
       },
       (error) => {

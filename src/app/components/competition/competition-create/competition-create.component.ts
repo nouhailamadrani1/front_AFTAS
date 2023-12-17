@@ -25,44 +25,36 @@ export class CompetitionCreateComponent {
   constructor(
     private competitionService: CompetitionService,
     private router: Router,
-    private toastService: ToastService // Inject ToastService
+    private toastService: ToastService
   ) { }
+
   showSuccessToast(): void {
     this.toastService.showSuccess('Registration is allowed until 48 hours before the competition start OR The date is reserved ');
   }
 
   createCompetition(): void {
-    // Check if  date reseerved
+
     if (!this.newCompetition.location || !this.newCompetition.date) {
       console.error('provide both location and date.');
       return;
     }
-  
-    // Check if 84 hours in the future
+
     const currentDate = new Date();
     const competitionDate = new Date(this.newCompetition.date);
     const timeDifference = competitionDate.getTime() - currentDate.getTime();
     const hoursDifference = timeDifference / (1000 * 60 * 60);
-  
+
     if (hoursDifference < 48) {
-      console.error('Registration is allowed until 24 hours before the competition start.');
-      
-        this.showSuccessToast();
-        
+      this.showSuccessToast();
       return;
     }
-  
-    // Generate the competition code based on the first three characters of the location and the competition date
+
     const locationCode = this.newCompetition.location.substring(0, 3).toLowerCase();
     const dateCode = this.formatDateCode(this.newCompetition.date);
-  
-    // Combine location code and date code to form 
     this.newCompetition.code = `${locationCode}-${dateCode}`;
-  
-    // Save competition
+
     this.competitionService.saveCompetition(this.newCompetition).subscribe(
       (createdCompetition) => {
-        console.log('Competition created successfully:', createdCompetition);
         this.router.navigate(['/competitions']);
       },
       (error) => {
@@ -75,4 +67,5 @@ export class CompetitionCreateComponent {
     const datePipe = new DatePipe('en-US');
     return datePipe.transform(date, 'y-MM-dd') || '';
   }
+  
 }

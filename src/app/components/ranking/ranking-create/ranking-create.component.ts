@@ -30,6 +30,7 @@ export class RankingCreateComponent implements OnInit {
       score: [0]
     });
   }
+
   showSuccessToast(): void {
     this.toastService.showSuccess(' operation successful <3.');
   }
@@ -54,39 +55,30 @@ export class RankingCreateComponent implements OnInit {
     this.competitionService.getAllCompetitions().subscribe(
       (data: any[]) => {
         console.log('All Competitions:', data);
-  
         const currentDate = new Date();
         this.competitions = data.filter(comp => {
           const announcementDate = new Date(comp.date);
           const startDate = new Date(comp.date);
           const endDate = new Date(comp.date);
-          
           const startTime: { hours: number, minutes: number } = this.parseTime(comp.startTime);
           const endTime: { hours: number, minutes: number } = this.parseTime(comp.endTime);
-  
-         
-          startDate.setHours(startTime.hours, startTime.minutes, 0, 0); 
+          startDate.setHours(startTime.hours, startTime.minutes, 0, 0);
           endDate.setHours(endTime.hours, endTime.minutes, 0, 0);
-  
           return currentDate < announcementDate && currentDate < startDate && currentDate < endDate;
         });
-  
-        
       },
       (error) => {
         console.error(error);
       }
     );
   }
-  
+
   parseTime(timeString: string): { hours: number, minutes: number } {
     const [hoursStr, minutesStr] = timeString.split(':');
     const hours = parseInt(hoursStr, 10);
     const minutes = parseInt(minutesStr, 10);
     return { hours, minutes };
   }
-  
-  
 
   submitRanking(): void {
     if (this.rankingForm.valid && this.competitions.length > 0) {

@@ -1,40 +1,46 @@
 <div id="toast-container" class="position-fixed top-0 let p-3" style="z-index: 11"></div>
 
 <div class="container ">
-   
-    <div class="d-flex justify-content-center ">
-        
-    <form (submit)="createCompetition()" class="bg-white w-75 rounded-4 shadow p-3  bg-body-tertiar " >
-        <h5 class=" px-3 mb-3 text-center">Form Create Competition</h5>
-        <div class="mb-3  px-3">
+  <div class="d-flex justify-content-center ">
+
+    <form (submit)="createCompetition()" class="bg-white w-75 rounded-4 shadow p-3  bg-body-tertiar ">
+      <h5 class=" px-3 mb-3 text-center">Form Create Competition</h5>
+      <div class="mb-3  px-3">
         <label for="date" class="form-label">Date</label>
-        <input type="date" class="form-control  border-bottom border-0 border-secondary border-3" id="date" [(ngModel)]="newCompetition.date" name="date" required>
+        <input type="date" class="form-control  border-bottom border-0 border-secondary border-3" id="date"
+          [(ngModel)]="newCompetition.date" name="date" required>
       </div>
-    <div class="d-flex w-100">
+      <div class="d-flex w-100">
         <div class="mb-3 w-50 px-3">
-            <label for="startTime" class="form-label">Start Time</label>
-            <input type="time" class="form-control  border-bottom border-0 border-secondary border-3" id="startTime" [(ngModel)]="newCompetition.startTime" name="startTime" required>
-          </div>
-          <div class="mb-3 w-50 px-3">
-            <label for="endTime" class="form-label">End Time</label>
-            <input type="time" class="form-control  border-bottom border-0 border-secondary border-3" id="endTime" [(ngModel)]="newCompetition.endTime" name="endTime" required>
-          </div>
-    </div>
+          <label for="startTime" class="form-label">Start Time</label>
+          <input type="time" class="form-control  border-bottom border-0 border-secondary border-3" id="startTime"
+            [(ngModel)]="newCompetition.startTime" name="startTime" required>
+        </div>
+        <div class="mb-3 w-50 px-3">
+          <label for="endTime" class="form-label">End Time</label>
+          <input type="time" class="form-control  border-bottom border-0 border-secondary border-3" id="endTime"
+            [(ngModel)]="newCompetition.endTime" name="endTime" required>
+        </div>
+      </div>
       <div class="mb-3  px-3">
         <label for="numberOfParticipants" class="form-label">Number of Participants</label>
-        <input type="number" class="form-control  border-bottom border-0 border-secondary border-3" id="numberOfParticipants" [(ngModel)]="newCompetition.numberOfParticipants" name="numberOfParticipants" required>
+        <input type="number" class="form-control  border-bottom border-0 border-secondary border-3"
+          id="numberOfParticipants" [(ngModel)]="newCompetition.numberOfParticipants" name="numberOfParticipants"
+          required>
       </div>
       <div class="mb-3  px-3">
         <label for="location" class="form-label">Location</label>
-        <input type="text" class="form-control  border-bottom border-0 border-secondary border-3"  id="location" [(ngModel)]="newCompetition.location" name="location" required>
+        <input type="text" class="form-control  border-bottom border-0 border-secondary border-3" id="location"
+          [(ngModel)]="newCompetition.location" name="location" required>
       </div>
       <div class="mb-3  px-3">
         <label for="amount" class="form-label">Amount</label>
-        <input type="number" class="form-control  border-bottom border-0 border-secondary border-3" id="amount" [(ngModel)]="newCompetition.amount" name="amount" required>
+        <input type="number" class="form-control  border-bottom border-0 border-secondary border-3" id="amount"
+          [(ngModel)]="newCompetition.amount" name="amount" required>
       </div>
-      <div class="d-flex justify-content-center ">      <button type="submit" class="btn shadow shadow  mb-5 rounded"style="background-color: #0c151e; color:#f9eeb9" >Create Competition</button>
+      <div class="d-flex justify-content-center "> <button type="submit" class="btn shadow shadow  mb-5 rounded"
+          style="background-color: #0c151e; color:#f9eeb9">Create Competition</button>
       </div>
     </form>
-</div>
   </div>
-  
+</div>

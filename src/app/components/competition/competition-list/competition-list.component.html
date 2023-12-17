@@ -1,55 +1,61 @@
 <div id="toast-container" class="position-fixed top-0 let p-3" style="z-index: 11"></div>
-<div class=" mt-5  " >
-  <div class="d-flex justify-content-between"> 
-    <h4 >  <img class="mx-3 " width="50" height="50" src="https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/50/00000/external-competition-business-and-teamwork-smashingstocks-mixed-smashing-stocks.png" 
-      alt="external-competition-business-and-teamwork-smashingstocks-mixed-smashing-stocks"/>Competitions</h4>
-    <a routerLink="/competitions/create" class="btn shadow mb-3 rounded"style="background-color: #0c151e; color:#f9eeb9" > <b>+</b>  Add competition</a>
+<div class=" mt-5  ">
+  <div class="d-flex justify-content-between">
+    <h4> <img class="mx-3 " width="50" height="50"
+        src="https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/50/00000/external-competition-business-and-teamwork-smashingstocks-mixed-smashing-stocks.png"
+        alt="external-competition-business-and-teamwork-smashingstocks-mixed-smashing-stocks" />Competitions</h4>
+    <a routerLink="/competitions/create" class="btn shadow mb-3 rounded"
+      style="background-color: #0c151e; color:#f9eeb9"> <b>+</b> Add competition</a>
+  </div>
+  <div class="  bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3">
+    <div class="mb-3">
+      <label for="statusFilter" class="form-label">Filter by Status:</label>
+      <select class="form-select  border-bottom border-0 border-secondary border-3" id="statusFilter"
+        [(ngModel)]="selectedStatus" (change)="updateFilteredCompetitions()">
+        <option value="" selected>All</option>
+        <option value="Upcoming">Upcoming</option>
+        <option value="Closed">Closed</option>
+      </select>
     </div>
-    <div class="  bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3" >
-<div class="mb-3">
-  <label for="statusFilter" class="form-label">Filter by Status:</label>
-  <select class="form-select  border-bottom border-0 border-secondary border-3" id="statusFilter" [(ngModel)]="selectedStatus" (change)="updateFilteredCompetitions()">
-    <option value="" selected>All</option>
-    <option value="Upcoming">Upcoming</option>
-    <option value="Closed">Closed</option>
-  </select>
-</div>
-<table class="table align-middle mb-0 bg-white btn-rounded p-2">
-  <thead class="bg-light">
-    <tr>
-      <th>Code</th>
-      <th>Date</th>
-      <th>Start Time</th>
-      <th>End Time</th>
-      <th>Participants</th>
-      <th>Location</th>
-      <th>Status</th>
-      <th>Amount</th>
-      <th class="text-center">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let competition of filteredCompetitions">
-      <td>{{ competition.code }}</td>
-      <td>{{ competition.date | date:'yyyy-MM-dd' }}</td>
-      <td>{{ competition.startTime }}</td>
-      <td>{{ competition.endTime  }}</td>
-      <td>{{ competition.numberOfParticipants }}</td>
-      <td>{{ competition.location }}</td>
-      <td style="color: #ff0a0a; font-family: Impact, 'Arial Narrow Bold', sans-serif;">{{ competition.status }}</td>
-      <td>{{ competition.amount }}</td>
-      <td>
-          <button class="btn btn-outline-warning btn-rounded btn-sm mx-1 shadow bg-warning bg-opacity-25"
-          (click)="viewCompetitionDetails(competition.id)">List M</button>
-        <button class="btn btn-outline-danger btn-rounded btn-sm mx-1 shadow bg-danger bg-opacity-25"
-          (click)="deleteCompetition(competition.id)">Delete</button>
-          <button class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25" (click)="calculateAndAssignScores(competition.id)">
-            Finish
-          </button>
-          <button  class="btn btn-outline-dark btn-rounded btn-sm mx-1 shadow bg-dark bg-opacity-25" (click)="redirectToGetRankingsByCompetition(competition.id)">
-            Podium
-          </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <table class="table align-middle mb-0 bg-white btn-rounded p-2">
+      <thead class="bg-light">
+        <tr>
+          <th>Code</th>
+          <th>Date</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Participants</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Amount</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let competition of filteredCompetitions">
+          <td>{{ competition.code }}</td>
+          <td>{{ competition.date | date:'yyyy-MM-dd' }}</td>
+          <td>{{ competition.startTime }}</td>
+          <td>{{ competition.endTime }}</td>
+          <td>{{ competition.numberOfParticipants }}</td>
+          <td>{{ competition.location }}</td>
+          <td style="color: #ff0a0a; font-family: Impact, 'Arial Narrow Bold', sans-serif;">{{ competition.status }}
+          </td>
+          <td>{{ competition.amount }}</td>
+          <td>
+            <button class="btn btn-outline-warning btn-rounded btn-sm mx-1 shadow bg-warning bg-opacity-25"
+              (click)="viewCompetitionDetails(competition.id)">List M</button>
+            <button class="btn btn-outline-danger btn-rounded btn-sm mx-1 shadow bg-danger bg-opacity-25"
+              (click)="deleteCompetition(competition.id)">Delete</button>
+            <button class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25"
+              (click)="calculateAndAssignScores(competition.id)">
+              Finish
+            </button>
+            <button class="btn btn-outline-dark btn-rounded btn-sm mx-1 shadow bg-dark bg-opacity-25"
+              (click)="redirectToGetRankingsByCompetition(competition.id)">
+              Podium
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
