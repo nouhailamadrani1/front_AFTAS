@@ -13,7 +13,6 @@ Front-Aftas is the frontend application for the Aftas Club project, a sports clu
 - [Technologies Used](#technologies-used)
 - [Backend Repository](#backend-repository)
 
-
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
@@ -27,34 +26,35 @@ Before you begin, ensure you have the following installed:
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/nouhailamadrani1/front_AFTAS.git
-   
-## Navigate to the project directory:
+Navigate to the project directory:
 
 bash
 Copy code
 cd front-aftas
 Install dependencies:
+
 bash
 Copy code
 npm install
-## Usage
+Usage
 To start the development server:
 
-  ```bash
+bash
 Copy code
 ng serve
 Visit http://localhost:4200/ in your browser.
 
- ## Scripts
+Scripts
 ng serve: Start the development server.
 ng build: Build the project.
 ng test: Run unit tests.
-## Technologies Used
+Technologies Used
 Angular
 Bootstrap
+Backend Repository
+For the backend codebase, please refer to the Aftas Club Backend Repository.
 
+css
+Copy code
 
- ## Backend Repository
-For the backend codebase, please refer to the Aftas Club Backend Repository https://github.com/nouhailamadrani1/Comp-tition-AFTAS-.
-
-
+Feel free to make any additional changes or adjustments according to your
