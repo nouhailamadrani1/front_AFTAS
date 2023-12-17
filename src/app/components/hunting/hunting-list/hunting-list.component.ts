@@ -104,8 +104,9 @@ loadHunts(): void {
     this.huntingService.deleteHunting(id).subscribe(
       () => {
         console.log(`Hunt with ID ${id} deleted successfully.`);
-        this.loadHunts();
         this.showSuccessToast();
+        this.loadHunts();
+       
       },
       (error) => {
         console.error(`Error deleting hunt with ID ${id}:`, error);

@@ -1,0 +1,45 @@
+body {
+    overflow-y: auto;
+    background-color: #fafbfc;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .d-flex {
+    display: flex;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-width: 250px; 
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #343a40;
+    color: #ffffff;
+    transition: 0.3s;
+  }
+
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    transition: 0.3s;
+  }
+
+  @media screen and (min-width: 768px) {
+  
+    .sidebar {
+      width: 15%;
+      max-width: 250px;
+    }
+
+    .main-content {
+      margin-left: 15%;
+      width: 85%;
+    }
+    
+   
+      .btn-rounded {
+        border-radius: 20px;
+      }
+  }

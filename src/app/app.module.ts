@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { TimeFormatPipe } from './models/time-format.pipe';
 import { BrowserModule } from '@angular/platform-browser';
@@ -36,6 +37,9 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { ScriptComponent } from './components/script/script.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
+
 
 
 
@@ -77,7 +81,7 @@ import { DatePipe } from '@angular/common';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule, 
-    // NgbPaginationModule, 
+    MatPaginatorModule,
     FormsModule
   ],
   providers: [DatePipe],

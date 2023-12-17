@@ -1,4 +1,3 @@
-
 import { Competition } from './competition.model';
 import { Member } from './member.model';
 

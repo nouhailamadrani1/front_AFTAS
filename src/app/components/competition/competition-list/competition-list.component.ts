@@ -1,10 +1,12 @@
-// competition-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CompetitionService } from '../../../services/competition.service';
 import { Competition } from '../../../models/competition.model';
 import { ToastService } from '../../../services/toast.service';
 import { HuntingService } from '../../../services/hunting.service';
+import { Page } from '../../../models/page.model';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-competition-list',
@@ -17,7 +19,10 @@ export class CompetitionListComponent implements OnInit {
   competitions: Competition[] = [];
   filteredCompetitions: Competition[] = [];
   selectedStatus: string | null = null;
-
+  currentPage = 0;
+  pageSize = 3; 
+  totalItems = 0;
+  totalPages = 7;
   constructor(
     private competitionService: CompetitionService,
     private router: Router,
@@ -33,18 +38,22 @@ export class CompetitionListComponent implements OnInit {
     this.toastService.showSuccess(' operation successful <3.');
   }
 
+
   loadCompetitions(): void {
-    this.competitionService.getAllCompetitions().subscribe(
-      competitions => {
-        this.competitions = competitions.map(comp => ({
+    this.competitionService.getAllCompetitionsPaginated(this.currentPage, this.pageSize).subscribe(
+      (competitions: Page<Competition>) => {
+        this.competitions = competitions.content.map((comp: Competition) => ({
           ...comp,
           status: this.getCompetitionStatus(comp.date)
         }));
         this.filteredCompetitions = this.competitions;
+        this.totalItems = competitions.totalElements;
+        this.totalPages = competitions.totalPages;
       },
       error => console.log(error)
     );
   }
+  
 
   getCompetitionStatus(date: Date): string {
     const currentDate = new Date();
@@ -102,4 +111,10 @@ export class CompetitionListComponent implements OnInit {
       (error) => console.log(error)
     );
   }
+  onPageChange(event: PageEvent): void {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.loadCompetitions();
+  }
+  
 }
